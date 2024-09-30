@@ -1,21 +1,23 @@
 package entities;
 
-import java.util.Date;
+import entities.services.BookServices;
 
-public class Member extends Pessoa{
+import java.time.LocalDate;
+
+public class Member extends Pessoa implements BookServices {
     private String address;
-    private Integer phoneNumber;
+    private Double phoneNumber;
     private String email;
-    private Date dateAssociation;
+    private LocalDate dateAssociation;
+
     private Loan loan;
 
-    public Member(String name, String address, Integer phoneNumber, String email, Date dateAssociation, Loan loan) {
+    public Member(String name, String address, Double phoneNumber, String email, LocalDate dateAssociation) {
         super(name);
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.dateAssociation = dateAssociation;
-        this.loan = loan;
     }
 
     public String getAddress() {
@@ -26,11 +28,11 @@ public class Member extends Pessoa{
         this.address = address;
     }
 
-    public Integer getPhoneNumber() {
+    public Double getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Double phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -42,11 +44,26 @@ public class Member extends Pessoa{
         this.email = email;
     }
 
-    public Date getDateAssociation() {
+    public LocalDate getDateAssociation() {
         return dateAssociation;
     }
 
     public Loan getLoan() {
         return loan;
+    }
+
+    @Override
+    public void registerBook(Book book) {
+        
+    }
+
+    @Override
+    public Book sourchBook(Book book) {
+        return null;
+    }
+
+    @Override
+    public void loanReturn() {
+
     }
 }
