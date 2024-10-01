@@ -1,17 +1,16 @@
-package entities;
+package model.entities;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Book {
     private String title;
     private Author author;
     private LocalDate datePlublication;
-    private String isbn;
+    private long isbn;
     private String genre;
     private Integer quantity;
 
-    public Book(String title, Author author, LocalDate datePlublication, String isbn, String genre, Integer quantity) {
+    public Book(String title, Author author, LocalDate datePlublication, long isbn, String genre, Integer quantity) {
         this.title = title;
         this.author = author;
         this.datePlublication = datePlublication;
@@ -44,7 +43,7 @@ public class Book {
         this.datePlublication = datePlublication;
     }
 
-    public String getIsbn() {
+    public long getIsbn() {
         return isbn;
     }
 

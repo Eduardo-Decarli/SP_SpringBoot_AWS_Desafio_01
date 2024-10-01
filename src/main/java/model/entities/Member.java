@@ -1,6 +1,6 @@
-package entities;
+package model.entities;
 
-import entities.services.BookServices;
+import model.services.BookServices;
 
 import java.time.LocalDate;
 

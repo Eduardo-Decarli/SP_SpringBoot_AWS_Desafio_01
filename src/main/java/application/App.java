@@ -1,8 +1,8 @@
 package application;
 
-import entities.Author;
-import entities.Book;
-import entities.Member;
+import model.entities.Author;
+import model.entities.Book;
+import model.entities.Member;
 
 import java.time.LocalDate;
 import java.util.Locale;
@@ -29,9 +29,11 @@ public class App {
             System.out.println("Press 7 to exit");
             optionSelected = sc.nextInt();
 
+
             switch (optionSelected) {
+
                 case 1:
-/*
+
                     System.out.println("== Register a new Book ==\n");
                     System.out.println("Write de book information");
 
@@ -42,27 +44,32 @@ public class App {
                     System.out.println("Write the Date of Publication");
                     String datePublication = sc.nextLine();
                     System.out.println("Write the ISBN");
-                    Double isbn = sc.nextInt();
+                    long isbn = sc.nextLong();
                     System.out.println("Write the book's genre");
                     String genre = sc.nextLine();
                     System.out.println("Write quantity books arrive");
                     String quantity = sc.nextLine();
+
+
 
                     System.out.println("do you want to list the author or create a new author?");
                     System.out.println("Press 1 to list and 2 to create a new author");
                     int controllerAuthor = sc.nextInt();
 
                     System.out.println("Write de author information");
-
+                    Author author = null;
                     if(controllerAuthor == 1){
                         System.out.println("== Register a new author ==\n");
-                    }else{
-                        /* Listar os authores
+                        LocalDate ld = LocalDate.of(2024, 4, 20);
+                        author = new Author("Raymond", ld, "Portuguese", "Teste");
+
+                    }else if(controllerAuthor == 2){
+                        /*Listar os authores*/
                     }
-                    */
+
 
                     LocalDate ld = LocalDate.of(2024, 4, 20);
-                    Book book = new Book("Mago", new Author("Raymond", ld, "Portuguese", "Teste"), ld, "9788580415513", "Ficção", 85);
+                    Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
                     member.registerBook(book);
                     System.out.println(book);
                     break;

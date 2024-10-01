@@ -1,6 +1,6 @@
-package entities;
+package model.entities;
 
-import entities.enumeration.StatesLoan;
+import model.entities.enumeration.StatesLoan;
 
 import java.util.Date;
 import java.util.List;

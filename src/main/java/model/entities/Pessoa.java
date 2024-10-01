@@ -1,6 +1,6 @@
-package entities;
+package model.entities;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String name;
 
     public Pessoa(String name) {

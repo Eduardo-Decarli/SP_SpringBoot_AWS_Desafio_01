@@ -1,6 +1,6 @@
-package entities.services;
+package model.services;
 
-import entities.Book;
+import model.entities.Book;
 
 public interface BookServices {
     public void registerBook(Book book);
