@@ -1,13 +1,15 @@
-package dao;
+package model.services.dao;
 
-import dao.servicesDAO.AuthorServicesDAO;
+import exceptions.DaoException;
+import model.repositories.dao.AuthorServicesDAO;
 import model.entities.Author;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
-import static dao.ConnectionFactory.getConnection;
+import static model.services.dao.ConnectionFactory.getConnection;
 
 public class AuthorDAO implements AuthorServicesDAO {
 
@@ -21,6 +23,11 @@ public class AuthorDAO implements AuthorServicesDAO {
     @Override
     public Author authorFindByName() {
         return null;
+    }
+
+    @Override
+    public List<Author> authorFindAll() {
+        return List.of();
     }
 
     @Override

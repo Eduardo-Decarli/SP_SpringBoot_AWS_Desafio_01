@@ -1,7 +1,5 @@
 package model.services;
 
-import model.entities.Author;
+public class AuthorServices {
 
-public interface AuthorServices {
-    public void registerNewAuthor();
 }

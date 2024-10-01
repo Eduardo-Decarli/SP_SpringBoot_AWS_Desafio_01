@@ -1,11 +1,10 @@
 package model.entities;
 
-import dao.AuthorDAO;
-import model.services.AuthorServices;
+import model.repositories.AuthorRepository;
 
 import java.time.LocalDate;
 
-public class Author extends People implements AuthorServices {
+public class Author extends People {
     private LocalDate dateOfBirth;
     private String nationality;
     private String biography;
@@ -39,11 +38,5 @@ public class Author extends People implements AuthorServices {
 
     public void setBiography(String biography) {
         this.biography = biography;
-    }
-
-    @Override
-    public void registerNewAuthor() {
-        AuthorDAO authorDao = new AuthorDAO();
-        authorDao.insertAuthor(this);
     }
 }

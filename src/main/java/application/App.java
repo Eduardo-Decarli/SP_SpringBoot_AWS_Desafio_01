@@ -1,12 +1,9 @@
 package application;
 
-import dao.AuthorDAO;
 import model.entities.*;
-import model.entities.enumeration.StatesLoan;
+import model.services.dao.AuthorDAO;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -19,15 +16,6 @@ public class App {
         System.out.println("welcome to library manager\n");
         LocalDate ld = LocalDate.of(2024, 4, 20);
 
-        Member member = new Member("Eduardo", "JoséCherem", 48996342153l, "teste@teste", ld, null);
-        Author author = new Author("Raymond", ld, "Portuguese", "Teste");
-
-        Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
-        author.registerNewAuthor();
-        member.registerBook(book);
-
-
-        /*
         int optionSelected;
 
         do {
@@ -47,12 +35,10 @@ public class App {
                 case 1:
 
                     System.out.println("== Register a new Book ==\n");
-                    System.out.println("Write de book information");
+                    System.out.println("Write de book informations");
 
                     System.out.println("Write the book title");
                     String titleBook = sc.nextLine();
-                    System.out.println("Write the author");
-                    String authorName = sc.nextLine();
                     System.out.println("Write the Date of Publication");
                     String datePublication = sc.nextLine();
                     System.out.println("Write the ISBN");
@@ -62,34 +48,43 @@ public class App {
                     System.out.println("Write quantity books arrive");
                     String quantity = sc.nextLine();
 
-
-
-                    System.out.println("do you want to list the author or create a new author?");
+                    System.out.println("let's write the author information");
                     System.out.println("Press 1 to list and 2 to create a new author");
                     int controllerAuthor = sc.nextInt();
 
-                    System.out.println("Write de author information");
-                    Author author = null;
-                    if(controllerAuthor == 1){
-                        System.out.println("== Register a new author ==\n");
-                        LocalDate ld = LocalDate.of(2024, 4, 20);
-                        author = new Author("Raymond", ld, "Portuguese", "Teste");
+                    switch(controllerAuthor){
 
-                    }else if(controllerAuthor == 2){
-                        /*Listar os authores
+                        case 1:
+                            /* Listar os autores do banco de dados */
+                            break;
+
+                        case 2:
+                            /* Instanciar um novo autor */
+
+                            System.out.println("== Register a new author ==\n");
+                            Author author = new Author("Raymond", ld, "Portuguese", "Teste");
+
+
+                        default:
+                            System.out.println("Opção inválida!");
                     }
 
 
-                    LocalDate ld = LocalDate.of(2024, 4, 20);
-                    Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
-                    member.registerBook(book);
-                    System.out.println(book);
+
+
                     break;
             }
+            Member member = new Member("Eduardo", "teste", 48996342153l, "teste@teste", ld, null);
+            Author author = new Author("Raymond", ld, "Portuguese", "Teste");
+            AuthorDAO authorDao = new AuthorDAO();
+            authorDao.insertAuthor(author);
 
 
+            Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
+            member.registerBook(book);
+            System.out.println(book);
         } while (optionSelected != 7);
-*/
+
 
     }
 }

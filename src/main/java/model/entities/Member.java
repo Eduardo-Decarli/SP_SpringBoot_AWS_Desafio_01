@@ -1,11 +1,11 @@
 package model.entities;
 
-import dao.BookDAO;
-import model.services.BookServices;
+import model.services.dao.BookDAO;
+import model.repositories.BookRepository;
 
 import java.time.LocalDate;
 
-public class Member extends People implements BookServices {
+public class Member extends People implements BookRepository {
     private String address;
     private long phoneNumber;
     private String email;

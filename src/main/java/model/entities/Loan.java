@@ -1,13 +1,12 @@
 package model.entities;
 
 import model.entities.enumeration.StatesLoan;
-import model.services.LoanService;
+import model.repositories.LoanRepository;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-public class Loan implements LoanService {
+public class Loan implements LoanRepository {
 
     private List<Book> books;
 

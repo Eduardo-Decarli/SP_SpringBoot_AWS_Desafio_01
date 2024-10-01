@@ -1,4 +1,6 @@
-package dao;
+package model.services.dao;
+
+import exceptions.DaoException;
 
 import java.io.*;
 import java.sql.*;

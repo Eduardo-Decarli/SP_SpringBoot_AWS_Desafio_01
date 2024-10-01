@@ -1,4 +1,4 @@
-package dao.servicesDAO;
+package model.repositories.dao;
 
 import model.entities.Book;
 import model.entities.Loan;
