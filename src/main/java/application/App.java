@@ -1,10 +1,12 @@
 package application;
 
-import model.entities.Author;
-import model.entities.Book;
-import model.entities.Member;
+import dao.AuthorDAO;
+import model.entities.*;
+import model.entities.enumeration.StatesLoan;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -15,9 +17,19 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("welcome to library manager\n");
-        Member member = new Member("Eduardo", "teste", 99.0, "teste@teste", LocalDate.of(2024, 4, 20));
+        LocalDate ld = LocalDate.of(2024, 4, 20);
 
+        Member member = new Member("Eduardo", "JoséCherem", 48996342153l, "teste@teste", ld, null);
+        Author author = new Author("Raymond", ld, "Portuguese", "Teste");
+
+        Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
+        author.registerNewAuthor();
+        member.registerBook(book);
+
+
+        /*
         int optionSelected;
+
         do {
             System.out.println("Select an option");
             System.out.println("Press 1 to register a new book");
@@ -64,7 +76,7 @@ public class App {
                         author = new Author("Raymond", ld, "Portuguese", "Teste");
 
                     }else if(controllerAuthor == 2){
-                        /*Listar os authores*/
+                        /*Listar os authores
                     }
 
 
@@ -77,7 +89,7 @@ public class App {
 
 
         } while (optionSelected != 7);
-
+*/
 
     }
 }
