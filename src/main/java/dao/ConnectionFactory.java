@@ -49,6 +49,17 @@ public class ConnectionFactory {
         }
     }
 
+    public static void closePreparedStatement(PreparedStatement stmt){
+        if(stmt != null){
+            try{
+                stmt.close();
+            }
+            catch (SQLException e){
+                throw new DaoException(e.getMessage());
+            }
+        }
+    }
+
     public static void closeResultSet(ResultSet rs){
         if(rs != null){
             try{

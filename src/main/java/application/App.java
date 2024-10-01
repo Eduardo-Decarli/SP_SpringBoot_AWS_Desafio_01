@@ -1,5 +1,6 @@
 package application;
 
+import dao.AuthorDAO;
 import model.entities.*;
 import model.entities.enumeration.StatesLoan;
 
@@ -16,9 +17,14 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("welcome to library manager\n");
-
         LocalDate ld = LocalDate.of(2024, 4, 20);
 
+        Member member = new Member("Eduardo", "JoséCherem", 48996342153l, "teste@teste", ld, null);
+        Author author = new Author("Raymond", ld, "Portuguese", "Teste");
+
+        Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
+        author.registerNewAuthor();
+        member.registerBook(book);
 
 
         /*

@@ -1,9 +1,9 @@
 package model.entities;
 
-public abstract class Pessoa {
+public abstract class People {
     private String name;
 
-    public Pessoa(String name) {
+    public People(String name) {
         this.name = name;
     }
 

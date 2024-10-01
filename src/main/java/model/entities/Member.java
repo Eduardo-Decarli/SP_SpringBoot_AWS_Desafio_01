@@ -1,19 +1,19 @@
 package model.entities;
 
-import model.entities.enumeration.StatesLoan;
+import dao.BookDAO;
 import model.services.BookServices;
 
 import java.time.LocalDate;
 
-public class Member extends Pessoa implements BookServices {
+public class Member extends People implements BookServices {
     private String address;
-    private Double phoneNumber;
+    private long phoneNumber;
     private String email;
     private LocalDate dateAssociation;
 
     private Loan loan;
 
-    public Member(String name, String address, Double phoneNumber, String email, LocalDate dateAssociation, Loan loan) {
+    public Member(String name, String address, long phoneNumber, String email, LocalDate dateAssociation, Loan loan) {
         super(name);
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -30,11 +30,11 @@ public class Member extends Pessoa implements BookServices {
         this.address = address;
     }
 
-    public Double getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Double phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -60,7 +60,8 @@ public class Member extends Pessoa implements BookServices {
 
     @Override
     public void registerBook(Book book) {
-
+        BookDAO bsDao = new BookDAO();
+        bsDao.insertBook(book);
     }
 
     @Override

@@ -1,8 +1,15 @@
 package model.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
 public class Book {
+
+    private Integer id;
+
     private String title;
     private Author author;
     private LocalDate datePlublication;
