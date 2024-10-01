@@ -1,5 +1,6 @@
 package model.entities;
 
+import model.entities.enumeration.StatesLoan;
 import model.services.BookServices;
 
 import java.time.LocalDate;
@@ -12,12 +13,13 @@ public class Member extends Pessoa implements BookServices {
 
     private Loan loan;
 
-    public Member(String name, String address, Double phoneNumber, String email, LocalDate dateAssociation) {
+    public Member(String name, String address, Double phoneNumber, String email, LocalDate dateAssociation, Loan loan) {
         super(name);
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.dateAssociation = dateAssociation;
+        this.loan = loan;
     }
 
     public String getAddress() {
@@ -52,6 +54,10 @@ public class Member extends Pessoa implements BookServices {
         return loan;
     }
 
+    public void setLoan(Loan loan){
+        this.loan = loan;
+    }
+
     @Override
     public void registerBook(Book book) {
 
@@ -62,8 +68,16 @@ public class Member extends Pessoa implements BookServices {
         return null;
     }
 
-    @Override
-    public void loanReturn() {
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "name= " + getName() +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", dateAssociation=" + dateAssociation +
+                ", loan=" + (loan != null ? loan.toString() : "does not have a loan") +
+                '}';
     }
 }

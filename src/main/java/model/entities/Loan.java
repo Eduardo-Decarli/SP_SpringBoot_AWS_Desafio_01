@@ -1,21 +1,23 @@
 package model.entities;
 
 import model.entities.enumeration.StatesLoan;
+import model.services.LoanService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class Loan {
+public class Loan implements LoanService {
 
     private List<Book> books;
 
     private Member member;
-    private Date dateLoan;
-    private Date returnDate;
+    private LocalDate dateLoan;
+    private LocalDate returnDate;
     private StatesLoan stateLoan;
     private Double taxFine;
 
-    public Loan(List<Book> books, Member member, Date dateLoan, Date returnDate, StatesLoan stateLoan, Double taxFine) {
+    public Loan(List<Book> books, Member member, LocalDate dateLoan, LocalDate returnDate, StatesLoan stateLoan, Double taxFine) {
         this.books = books;
         this.member = member;
         this.dateLoan = dateLoan;
@@ -40,19 +42,19 @@ public class Loan {
         this.member = member;
     }
 
-    public Date getDateLoan() {
+    public LocalDate getDateLoan() {
         return dateLoan;
     }
 
-    public void setDateLoan(Date dateLoan) {
+    public void setDateLoan(LocalDate dateLoan) {
         this.dateLoan = dateLoan;
     }
 
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -66,5 +68,32 @@ public class Loan {
 
     public Double getTaxFine() {
         return taxFine;
+    }
+
+    @Override
+    public void registerLoan() {
+        if(member.getLoan() == null || member.getLoan().getStateLoan() == StatesLoan.CONCLUIDO){
+            member.setLoan(this);
+            /* Lógica para cadastrar no banco de dados */
+        }else{
+            throw new EntiException("Error when registering, there is a loan in progress");
+        }
+    }
+
+    @Override
+    public void loanReturn() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "books=" + books +
+                ", member=" + member.getName() +
+                ", dateLoan=" + dateLoan +
+                ", returnDate=" + returnDate +
+                ", stateLoan=" + stateLoan +
+                ", taxFine=" + taxFine +
+                '}';
     }
 }
