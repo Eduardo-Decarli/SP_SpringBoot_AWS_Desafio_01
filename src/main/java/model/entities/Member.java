@@ -54,7 +54,7 @@ public class Member extends Pessoa implements BookServices {
 
     @Override
     public void registerBook(Book book) {
-        
+
     }
 
     @Override
