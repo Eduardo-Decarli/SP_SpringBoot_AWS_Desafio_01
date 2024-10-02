@@ -77,7 +77,31 @@ public class AuthorDAO implements AuthorServicesDAO {
 
     @Override
     public List<Author> authorFindAll() {
-        return List.of();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Author> authorsList = new ArrayList<>();
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Author");
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                String name = rs.getString("name");
+                LocalDate dateOfBirth = rs.getDate("dateOfBirth").toLocalDate();
+                String nationality = rs.getString("nationality");
+                String biography = rs.getString("biography");
+
+                author = new Author(name, dateOfBirth, nationality, biography);
+                authorsList.add(author);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the author: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return authorsList;
     }
 
     @Override

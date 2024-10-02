@@ -5,6 +5,7 @@ import model.services.AuthorServices;
 import model.services.dao.AuthorDAO;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -18,6 +19,12 @@ public class App {
         LocalDate ld = LocalDate.of(2024, 4, 20);
 
         int optionSelected;
+
+        AuthorServices as = new AuthorServices(new AuthorDAO());
+        List<Author> listAuthor = as.findAllAuthors();
+        for(Author x : listAuthor){
+            System.out.println(x);
+        }
 
         do {
             System.out.println("Select an option");

@@ -39,4 +39,12 @@ public class AuthorServices implements AuthorRepository {
         }
         return author;
     }
+
+    @Override
+    public List<Author> findAllAuthors() {
+        if(authorDao.authorFindAll() == null){
+            throw new ServicesException("There is not nothing author registered");
+        }
+        return authorDao.authorFindAll();
+    }
 }
