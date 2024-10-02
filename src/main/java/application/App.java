@@ -1,6 +1,7 @@
 package application;
 
 import model.entities.*;
+import model.services.AuthorServices;
 import model.services.dao.AuthorDAO;
 
 import java.time.LocalDate;
@@ -55,7 +56,7 @@ public class App {
                     switch(controllerAuthor){
 
                         case 1:
-                            /* Listar os autores do banco de dados */
+                             /*Listar os autores do banco de dados */
                             break;
 
                         case 2:
@@ -64,27 +65,12 @@ public class App {
                             System.out.println("== Register a new author ==\n");
                             Author author = new Author("Raymond", ld, "Portuguese", "Teste");
 
-
+                            break;
                         default:
                             System.out.println("Opção inválida!");
                     }
-
-
-
-
                     break;
             }
-            Member member = new Member("Eduardo", "teste", 48996342153l, "teste@teste", ld, null);
-            Author author = new Author("Raymond", ld, "Portuguese", "Teste");
-            AuthorDAO authorDao = new AuthorDAO();
-            authorDao.insertAuthor(author);
-
-
-            Book book = new Book("Mago", author, ld, 9788580415513l, "Ficção", 85);
-            member.registerBook(book);
-            System.out.println(book);
         } while (optionSelected != 7);
-
-
     }
 }

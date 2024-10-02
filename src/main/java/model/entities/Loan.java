@@ -1,12 +1,11 @@
 package model.entities;
 
 import model.entities.enumeration.StatesLoan;
-import model.repositories.LoanRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class Loan implements LoanRepository {
+public class Loan {
 
     private List<Book> books;
 
@@ -67,21 +66,6 @@ public class Loan implements LoanRepository {
 
     public Double getTaxFine() {
         return taxFine;
-    }
-
-    @Override
-    public void registerLoan() {
-        if(member.getLoan() == null || member.getLoan().getStateLoan() == StatesLoan.CONCLUIDO){
-            member.setLoan(this);
-            /* Lógica para cadastrar no banco de dados */
-        }else{
-            throw new EntiException("Error when registering, there is a loan in progress");
-        }
-    }
-
-    @Override
-    public void loanReturn() {
-
     }
 
     @Override

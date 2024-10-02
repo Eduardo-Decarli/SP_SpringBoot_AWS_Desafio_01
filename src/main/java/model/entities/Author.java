@@ -1,7 +1,5 @@
 package model.entities;
 
-import model.repositories.AuthorRepository;
-
 import java.time.LocalDate;
 
 public class Author extends People {
@@ -38,5 +36,14 @@ public class Author extends People {
 
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" + "name" + getName() +
+                "dateOfBirth=" + dateOfBirth +
+                ", nationality='" + nationality + '\'' +
+                ", biography='" + biography + '\'' +
+                '}';
     }
 }
