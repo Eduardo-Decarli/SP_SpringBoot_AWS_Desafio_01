@@ -1,11 +1,10 @@
 package model.entities;
 
 import model.services.dao.BookDAO;
-import model.repositories.BookRepository;
 
 import java.time.LocalDate;
 
-public class Member extends People implements BookRepository {
+public class Member extends People{
     private String address;
     private long phoneNumber;
     private String email;
@@ -57,18 +56,6 @@ public class Member extends People implements BookRepository {
     public void setLoan(Loan loan){
         this.loan = loan;
     }
-
-    @Override
-    public void registerBook(Book book) {
-        BookDAO bsDao = new BookDAO();
-        bsDao.insertBook(book);
-    }
-
-    @Override
-    public Book sourchBook(Book book) {
-        return null;
-    }
-
 
     @Override
     public String toString() {
