@@ -17,7 +17,7 @@ public class AuthorServices implements AuthorRepository {
 
     @Override
     public void registerNewAuthor(Author author) {
-        List<Author> listAuthors = authorDao.authorFindByName(author.getName());
+        List<Author> listAuthors = authorDao.selectAuthorByName(author.getName());
         for(Author correntAuthor : listAuthors){
             if(correntAuthor.getName().equals(author.getName())){
                 throw new ServicesException("The author is already registered");
@@ -32,7 +32,7 @@ public class AuthorServices implements AuthorRepository {
             throw new ServicesException("The selected number must be greater than 0");
         }
 
-        Author author = authorDao.authorFindById(id);
+        Author author = authorDao.selectAuthorById(id);
 
         if(author == null){
             throw new ServicesException("Author not found!");
@@ -42,9 +42,9 @@ public class AuthorServices implements AuthorRepository {
 
     @Override
     public List<Author> findAllAuthors() {
-        if(authorDao.authorFindAll() == null){
+        if(authorDao.selectAllAuthor() == null){
             throw new ServicesException("There is not nothing author registered");
         }
-        return authorDao.authorFindAll();
+        return authorDao.selectAllAuthor();
     }
 }
