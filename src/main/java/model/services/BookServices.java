@@ -19,7 +19,7 @@ public class BookServices implements BookRepository {
         if(book.getAuthor().getId() <= 0){
             throw new ServicesException("Invalid ID!");
         }
-        if(book.getIsbn() > 8 || book.getIsbn() < 8){
+        if(String.valueOf(book.getIsbn()).length() != 8){
             throw new ServicesException("Invalid ISBN, ISBN require 8 numbers");
         }
         bookDao.insertBook(book);

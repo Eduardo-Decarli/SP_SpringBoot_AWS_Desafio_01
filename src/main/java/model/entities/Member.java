@@ -12,13 +12,12 @@ public class Member extends People{
 
     private Loan loan;
 
-    public Member(String name, String address, long phoneNumber, String email, LocalDate dateAssociation, Loan loan) {
+    public Member(String name, String address, long phoneNumber, String email, LocalDate dateAssociation) {
         super(name);
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.dateAssociation = dateAssociation;
-        this.loan = loan;
     }
 
     public String getAddress() {
@@ -59,13 +58,11 @@ public class Member extends People{
 
     @Override
     public String toString() {
-        return "Member{" +
-                "name= " + getName() +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                ", dateAssociation=" + dateAssociation +
-                ", loan=" + (loan != null ? loan.toString() : "does not have a loan") +
-                '}';
+        return "Name: " + getName() +
+                ", Address: " + address +
+                ", Phone Number: " + phoneNumber +
+                ", Email='" + email +
+                ", Date of Association: " + dateAssociation +
+                ", Loan: " + (loan != null ? loan.toString() : "does not have a loan");
     }
 }
