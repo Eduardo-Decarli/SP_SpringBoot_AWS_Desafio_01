@@ -1,8 +1,8 @@
-package model.services;
+package model.repositories;
 
 import model.entities.Book;
 
-public interface BookServices {
+public interface BookRepository {
     public void registerBook(Book book);
     public Book sourchBook(Book book);
 
