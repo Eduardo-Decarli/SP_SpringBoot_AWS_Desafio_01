@@ -5,6 +5,8 @@ import model.entities.Book;
 import model.repositories.BookRepository;
 import model.services.dao.BookDAO;
 
+import java.util.List;
+
 public class BookServices implements BookRepository {
 
     private BookDAO bookDao;
@@ -31,5 +33,28 @@ public class BookServices implements BookRepository {
         }
         Book book = bookDao.selectBookByIsbn(isbn);
         return book;
+    }
+
+    @Override
+    public List<Book> findAllBooks() {
+        if(bookDao.selectAllBooks() == null){
+            throw new ServicesException("none books registered");
+        }
+        return bookDao.selectAllBooks();
+    }
+
+    @Override
+    public List<Book> findBooksAuthor(int id) {
+        if(id <= 0){
+            throw new ServicesException("Invalid ID");
+        }
+        List<Book> listBook = bookDao.selectBooksByAuthor(id);
+
+        if(listBook.isEmpty()){
+            return null;
+        }else {
+            System.out.println("These are the books");
+            return listBook;
+        }
     }
 }

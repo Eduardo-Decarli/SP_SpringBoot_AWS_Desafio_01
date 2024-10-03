@@ -5,6 +5,7 @@ import model.services.dao.BookDAO;
 import java.time.LocalDate;
 
 public class Member extends People{
+    private int id;
     private String address;
     private long phoneNumber;
     private String email;
@@ -18,6 +19,14 @@ public class Member extends People{
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.dateAssociation = dateAssociation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAddress() {

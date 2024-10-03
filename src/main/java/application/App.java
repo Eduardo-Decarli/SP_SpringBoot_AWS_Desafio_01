@@ -39,6 +39,7 @@ public class App {
         System.out.println("press 1 to login or 2 to register");
         int optionLogin = sc.nextInt();
         sc.nextLine();
+
         switch (optionLogin){
             case 1:
                 System.out.println("== Login ==");
@@ -81,6 +82,7 @@ public class App {
             System.out.println("Press 7 to exit");
             optionSelected = sc.nextInt();
             sc.nextLine();
+
             switch (optionSelected) {
 
                 case 1:
@@ -147,7 +149,8 @@ public class App {
                     break;
 
                 case 2:
-                    System.out.println("== Register a new author ==\n");
+
+                    System.out.println("== Register a new Author ==\n");
                     System.out.print("Write the author's name: ");
                     String authorName = sc.nextLine();
                     System.out.print("Write the birth of date: ");
@@ -162,7 +165,7 @@ public class App {
                     break;
 
                 case 3:
-                    //Registrar um novo Member
+                    System.out.println("== Register a new Member ==\n");
                     System.out.print("Write Member's name: ");
                     String name = sc.nextLine();
                     System.out.print("Write Member's address (city/state): ");
@@ -179,6 +182,43 @@ public class App {
                     memberServices.registerNewMember(member);
 
                     System.out.println("Create a new member with this information -> " + member);
+                    break;
+
+                case 4:
+                    //Listar os livros
+                    System.out.println("== Register a new Loan ==\n");
+                    System.out.println("do you want to list books for author (y/n)?: ");
+                    char controllerAuthorBook = sc.nextLine().toUpperCase().charAt(0);
+                    sc.nextLine();
+                    switch (controllerAuthorBook){
+                        case 'Y':
+                            System.out.println("What Author do you want to list?");
+                            for(Author correntAuthor : authorServices.findAllAuthors()){
+                                System.out.println("ID: " + correntAuthor.getId() + ", " + correntAuthor);
+                            }
+                            int idAuthor = sc.nextInt();
+                            sc.nextLine();
+                            List<Book> listBooks = bookServices.findBooksAuthor(idAuthor);
+                            if(listBooks != null) {
+                                for (Book correntBook :listBooks) {
+                                    System.out.println("ID: " + correntBook.getId() + ", " + correntBook);
+                                }
+                            }else{
+                                System.out.println("this is not have books");
+                            }
+                            break;
+
+                        case 'N':
+                            System.out.println("What Book do you want ");
+                            for(Book correntBook : bookServices.findAllBooks()){
+                                System.out.println(correntBook);
+                            }
+                            break;
+                    }
+                    System.out.println("");
+                    //Fazer o usuario escolher o id do livro
+                    //Sistema deve puxar o livro do banco de dados e adicionar ao objeto loan atraves do isbn
+                    //Criar um empréstimo para o livro
                     break;
             }
         }

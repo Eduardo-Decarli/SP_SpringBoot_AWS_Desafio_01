@@ -1,6 +1,6 @@
 package model.entities.enumeration;
 
-public enum StatesLoan {
+public enum StatusLoan {
     ATIVO,
     CONCLUIDO,
     ATRASADO;

@@ -86,12 +86,14 @@ public class AuthorDAO implements AuthorRepositoryDAO {
             rs = stmt.executeQuery();
 
             while(rs.next()){
+                int idAuthor = rs.getInt("idAuthor");
                 String name = rs.getString("name");
                 LocalDate dateOfBirth = rs.getDate("dateOfBirth").toLocalDate();
                 String nationality = rs.getString("nationality");
                 String biography = rs.getString("biography");
 
                 author = new Author(name, dateOfBirth, nationality, biography);
+                author.setId(idAuthor);
                 authorsList.add(author);
             }
         }
