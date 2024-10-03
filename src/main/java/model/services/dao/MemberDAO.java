@@ -28,7 +28,7 @@ public class MemberDAO implements MemberRepositoryDAO {
             stmt.setString(1, member.getName());
             stmt.setString(2, member.getAddress());
             stmt.setFloat(3, member.getPhoneNumber());
-            stmt.setString(4, member.getEmail()); //não pode repetir email
+            stmt.setString(4, member.getEmail());
             stmt.setDate(5, java.sql.Date.valueOf(member.getDateAssociation()));
 
             int rowsAffected = stmt.executeUpdate();

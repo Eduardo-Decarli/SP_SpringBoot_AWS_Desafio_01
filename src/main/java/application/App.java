@@ -133,9 +133,9 @@ public class App {
                             System.out.print("Write the Author's biography: ");
                             String authorBiography = sc.nextLine();
 
-                            /* Arrumar o problema com ID do author novo retornando 0 */
                             author = new Author(authorName,authorBirthOfDate, authorNationality, authorBiography);
-                            authorServices.registerNewAuthor(new Author(authorName,authorBirthOfDate, authorNationality, authorBiography));
+                            authorServices.registerNewAuthor(author);
+
                             book = new Book(titleBook, author, datePublication, isbn, genre, quantity);
                             bookServices.registerBook(book);
 
@@ -144,6 +144,42 @@ public class App {
                             System.out.println("Opção inválida!");
                             break;
                     }
+                    break;
+
+                case 2:
+                    System.out.println("== Register a new author ==\n");
+                    System.out.print("Write the author's name: ");
+                    String authorName = sc.nextLine();
+                    System.out.print("Write the birth of date: ");
+                    LocalDate authorBirthOfDate = LocalDate.parse(sc.nextLine(), fmt);
+                    System.out.print("Write the author's nationality: ");
+                    String authorNationality = sc.nextLine();
+                    System.out.print("Write the Author's biography: ");
+                    String authorBiography = sc.nextLine();
+
+                    author = new Author(authorName,authorBirthOfDate, authorNationality, authorBiography);
+                    authorServices.registerNewAuthor(author);
+                    break;
+
+                case 3:
+                    //Registrar um novo Member
+                    System.out.print("Write Member's name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Write Member's address (city/state): ");
+                    String address = sc.nextLine();
+                    System.out.print("Write Member's phone number (some numbers): ");
+                    long phoneNumber = sc.nextLong();
+                    sc.nextLine();
+                    System.out.print("Write Member's email: ");
+                    String emailRegister = sc.nextLine();
+                    System.out.print("Write Member's date of association (dd/MM/yyyy): ");
+                    LocalDate dateAssociation = LocalDate.parse(sc.nextLine(), fmt);
+
+                    member = new Member(name, address, phoneNumber, emailRegister, dateAssociation);
+                    memberServices.registerNewMember(member);
+
+                    System.out.println("Create a new member with this information -> " + member);
+                    break;
             }
         }
         while (optionSelected != 7);
