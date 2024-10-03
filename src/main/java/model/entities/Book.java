@@ -30,6 +30,10 @@ public class Book {
         return id;
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -72,13 +76,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author=" + author +
-                ", datePlublication=" + datePlublication +
-                ", isbn='" + isbn + '\'' +
-                ", genre='" + genre + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        return  "Title: " + title +
+                ", Author: " + author.getName() +
+                ", Date of Publication: " + datePlublication +
+                ", ISBN: " + isbn +
+                ", Genre: " + genre +
+                ", Quantity: " + quantity;
     }
 }

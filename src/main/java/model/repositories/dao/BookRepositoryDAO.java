@@ -11,5 +11,7 @@ public interface BookRepositoryDAO {
     void insertBook(Book book);
     public Book selectBookByIsbn(long isbn);
     public Book selectBookByName(int id);
-    public List<Book> selectBooksByAuthor(Author author);
+    public List<Book> selectBooksByAuthor(int idAuthor);
+    public List<Book> selectAllBooks();
+    public void updateBookQt(int idBook, int quantity);
 }

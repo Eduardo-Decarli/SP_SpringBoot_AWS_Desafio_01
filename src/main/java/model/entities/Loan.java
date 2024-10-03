@@ -1,22 +1,22 @@
 package model.entities;
 
-import model.entities.enumeration.StatesLoan;
+import model.entities.enumeration.StatusLoan;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class Loan {
 
-    private List<Book> books;
+    private Book book;
 
     private Member member;
     private LocalDate dateLoan;
     private LocalDate returnDate;
-    private StatesLoan stateLoan;
+    private StatusLoan stateLoan;
     private Double taxFine;
 
-    public Loan(List<Book> books, Member member, LocalDate dateLoan, LocalDate returnDate, StatesLoan stateLoan, Double taxFine) {
-        this.books = books;
+    public Loan(Book book, Member member, LocalDate dateLoan, LocalDate returnDate, StatusLoan stateLoan, Double taxFine) {
+        this.book = book;
         this.member = member;
         this.dateLoan = dateLoan;
         this.returnDate = returnDate;
@@ -24,12 +24,12 @@ public class Loan {
         this.taxFine = taxFine;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBooks(Book book) {
+        this.book = book;
     }
 
     public Member getMember() {
@@ -56,11 +56,11 @@ public class Loan {
         this.returnDate = returnDate;
     }
 
-    public StatesLoan getStateLoan() {
+    public StatusLoan getStateLoan() {
         return stateLoan;
     }
 
-    public void setStateLoan(StatesLoan stateLoan) {
+    public void setStateLoan(StatusLoan stateLoan) {
         this.stateLoan = stateLoan;
     }
 
@@ -70,13 +70,11 @@ public class Loan {
 
     @Override
     public String toString() {
-        return "Loan{" +
-                "books=" + books +
-                ", member=" + member.getName() +
-                ", dateLoan=" + dateLoan +
-                ", returnDate=" + returnDate +
-                ", stateLoan=" + stateLoan +
-                ", taxFine=" + taxFine +
-                '}';
+        return  "Book " + book +
+                ", Member: " + member.getName() +
+                ", Date of Loan: " + dateLoan +
+                ", Date of Return: " + returnDate +
+                ", Status of Loan: " + stateLoan +
+                ", Tax: " + taxFine;
     }
 }

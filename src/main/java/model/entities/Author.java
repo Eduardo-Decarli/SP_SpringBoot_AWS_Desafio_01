@@ -63,8 +63,7 @@ public class Author extends People {
     public String toString() {
         return "Author " + getName() +
                 ", DateOfBirth: " + dateOfBirth.format(fmt) +
-                "\n, Nationality='" + nationality +
-                ", Biography='" + biography + '\'' +
-                '}';
+                ", Nationality: " + nationality +
+                ", Biography: " + biography;
     }
 }

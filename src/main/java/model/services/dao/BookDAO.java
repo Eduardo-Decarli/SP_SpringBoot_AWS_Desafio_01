@@ -5,9 +5,11 @@ import model.entities.Author;
 import model.entities.Book;
 import model.entities.Loan;
 import model.repositories.dao.BookRepositoryDAO;
+import model.services.AuthorServices;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static model.services.dao.ConnectionFactory.getConnection;
@@ -67,6 +69,7 @@ public class BookDAO implements BookRepositoryDAO {
                 Author author = new AuthorDAO().selectAuthorById(authorId);
 
                 book = new Book( title, author, datePublication, isbnBook, gender, quantity);
+                book.setId(idBook);
             }
         }
         catch(SQLException e){
@@ -85,7 +88,98 @@ public class BookDAO implements BookRepositoryDAO {
     }
 
     @Override
-    public List<Book> selectBooksByAuthor(Author author) {
-        return List.of();
+    public List<Book> selectBooksByAuthor(int idAuthor) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Book> listBooks = new ArrayList<>();
+
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Books WHERE author = ?");
+            stmt.setInt(1, idAuthor);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                int idBook = rs.getInt("idBooks");
+                String title = rs.getString("title");
+                int authorId = rs.getInt("author");
+                LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
+                long isbnBook = rs.getLong("isbn");
+                String gender = rs.getString("gender");
+                int quantity = rs.getInt("quantity");
+
+                AuthorServices authorServices = new AuthorServices(new AuthorDAO());
+                Author author = authorServices.findAuthorById(authorId);
+
+                book = new Book(title, author, datePublication, isbnBook, gender, quantity);
+                book.setId(idBook);
+                listBooks.add(book);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return listBooks;
+    }
+
+    @Override
+    public List<Book> selectAllBooks() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Book> listBooks = new ArrayList<>();
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Books");
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                int IdBook = rs.getInt("idBooks");
+                String title = rs.getString("title");
+                int authorId = rs.getInt("author");
+                LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
+                long isbn = rs.getLong("isbn");
+                String gender = rs.getString("gender");
+                int quantity = rs.getInt("quantity");
+
+                AuthorServices authorServices = new AuthorServices(new AuthorDAO());
+                Author author = authorServices.findAuthorById(authorId);
+
+                book = new Book(title, author, datePublication, isbn, gender, quantity);
+                listBooks.add(book);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the author: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return listBooks;
+    }
+
+    @Override
+    public void updateBookQt(int idBook, int quantity) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE Books SET quantity = quantity - ? WHERE (idBooks = ?)");
+            st.setInt(1, quantity);
+            st.setInt(2, idBook);
+
+            int rowsAffected = st.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("\nThe update was complete");
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error to change book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(st);
+        }
+
     }
 }
+
