@@ -28,6 +28,10 @@ public class MemberServices implements MemberRepository {
         }
         Member member = memberDao.selectMemberByEmail(email);
 
+        if(member == null){
+            throw new ServicesException("No member with this email");
+        }
+
         return member;
     }
 }

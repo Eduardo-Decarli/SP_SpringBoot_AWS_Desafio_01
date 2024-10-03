@@ -20,16 +20,16 @@ public class BookServices implements BookRepository {
         if(book.getAuthor().getId() <= 0){
             throw new ServicesException("Invalid ID!");
         }
-        if(String.valueOf(book.getIsbn()).length() != 8){
-            throw new ServicesException("Invalid ISBN, ISBN require 8 numbers");
+        if(String.valueOf(book.getIsbn()).length() != 13){
+            throw new ServicesException("Invalid ISBN, ISBN require 13 numbers");
         }
         bookDao.insertBook(book);
     }
 
     @Override
     public Book findBookByIsbn(long isbn) {
-        if(isbn > 8 || isbn < 8){
-            throw new ServicesException("Invalid ISBN, ISBN require 8 numbers");
+        if(String.valueOf(isbn).length() != 13){
+            throw new ServicesException("Invalid ISBN, ISBN require 13 numbers");
         }
         Book book = bookDao.selectBookByIsbn(isbn);
         return book;
@@ -37,7 +37,7 @@ public class BookServices implements BookRepository {
 
     @Override
     public List<Book> findAllBooks() {
-        if(bookDao.selectAllBooks() == null){
+        if(bookDao.selectAllBooks().isEmpty()){
             throw new ServicesException("none books registered");
         }
         return bookDao.selectAllBooks();
@@ -56,5 +56,10 @@ public class BookServices implements BookRepository {
             System.out.println("These are the books");
             return listBook;
         }
+    }
+
+    @Override
+    public void minusQtBook(Book book, int qt) {
+
     }
 }

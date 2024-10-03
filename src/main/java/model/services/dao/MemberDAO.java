@@ -63,6 +63,7 @@ public class MemberDAO implements MemberRepositoryDAO {
                 LocalDate dateAssociation = rs.getDate("dateAssociation").toLocalDate();
 
                 member = new Member(name, address, phoneNumber, emailMember, dateAssociation);
+                member.setId(idMember);
             }
         }
         catch(SQLException e){

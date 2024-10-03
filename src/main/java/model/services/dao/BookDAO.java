@@ -69,6 +69,7 @@ public class BookDAO implements BookRepositoryDAO {
                 Author author = new AuthorDAO().selectAuthorById(authorId);
 
                 book = new Book( title, author, datePublication, isbnBook, gender, quantity);
+                book.setId(idBook);
             }
         }
         catch(SQLException e){
@@ -97,7 +98,7 @@ public class BookDAO implements BookRepositoryDAO {
             stmt.setInt(1, idAuthor);
             rs = stmt.executeQuery();
 
-            if(rs.next()){
+            while(rs.next()){
                 int idBook = rs.getInt("idBooks");
                 String title = rs.getString("title");
                 int authorId = rs.getInt("author");
@@ -157,6 +158,28 @@ public class BookDAO implements BookRepositoryDAO {
             ConnectionFactory.closeResultSet(rs);
         }
         return listBooks;
+    }
+
+    @Override
+    public void updateBookQt(int idBook, int quantity) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE Books SET quantity = quantity - ? WHERE (idBooks = ?)");
+            st.setInt(1, quantity);
+            st.setInt(2, idBook);
+
+            int rowsAffected = st.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("\nThe update was complete");
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error to change book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(st);
+        }
+
     }
 }
 

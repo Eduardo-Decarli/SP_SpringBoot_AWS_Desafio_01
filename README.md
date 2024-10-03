@@ -47,6 +47,10 @@ Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema
 
 - Não permite enviar um email vazio para o banco de dados.
 
-- ISBN de um livro é obrigatoriamente 8 digitos.
+- ISBN de um livro é obrigatoriamente 13 digitos.
 
 - Não permite cadastrar dois autores com o mesmo nome.
+
+- Não permite emprestar um livro que não esteja no estoque
+
+- Não permite cadastrar emprestimos com datas anteriores ou posteriores de forma errada. 
