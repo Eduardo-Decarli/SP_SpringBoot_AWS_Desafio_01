@@ -15,7 +15,6 @@ public class BookServices implements BookRepository {
 
     @Override
     public void registerBook(Book book) {
-        System.out.println(book.getAuthor().getId());
         if(book.getAuthor().getId() <= 0){
             throw new ServicesException("Invalid ID!");
         }
@@ -30,9 +29,7 @@ public class BookServices implements BookRepository {
         if(isbn > 8 || isbn < 8){
             throw new ServicesException("Invalid ISBN, ISBN require 8 numbers");
         }
-
         Book book = bookDao.selectBookByIsbn(isbn);
-
         return book;
     }
 }

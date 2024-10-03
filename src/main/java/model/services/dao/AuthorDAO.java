@@ -108,22 +108,29 @@ public class AuthorDAO implements AuthorRepositoryDAO {
     @Override
     public void insertAuthor(Author author) {
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
-            stmt = conn.prepareStatement("INSERT INTO Author (name, dateOfBirth, nationality, Biography) VALUES (?, ?, ?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO Author (name, dateOfBirth, nationality, Biography) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, author.getName());
             stmt.setDate(2, java.sql.Date.valueOf(author.getDateOfBirth()));
             stmt.setString(3, author.getNationality());
             stmt.setString(4, author.getBiography());
 
             int rowsAffected = stmt.executeUpdate();
+            rs = stmt.getGeneratedKeys();
             if(rowsAffected > 0){
-                System.out.println("\nThe author was saved successfully");
+                if(rs.next()) {
+                    int key = rs.getInt(1);
+                    author.setId(key);
+                    System.out.println("\nThe author was saved successfully");
+                }
             }
         }
         catch(SQLException e){
             throw new DaoException("There was a error as try save the new author: " + e.getMessage());
         }
         finally {
+            ConnectionFactory.closeResultSet(rs);
             ConnectionFactory.closePreparedStatement(stmt);
         }
     }
