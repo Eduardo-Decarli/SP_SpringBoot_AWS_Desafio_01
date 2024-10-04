@@ -31,8 +31,7 @@ public class LoanServices implements LoanRepository {
         if(loan.getReturnDate().isBefore(loan.getDateLoan())){
             throw new ServicesException("The return date is before date of loan!");
         }
-        Book bookConsult = bookDao.selectBookByIsbn(loan.getBook().getIsbn());
-        if(bookConsult.getQuantity() < 0){
+        if(loan.getBook().getQuantity() == 0){
             throw new ServicesException("This book is not in stock");
         }
 
