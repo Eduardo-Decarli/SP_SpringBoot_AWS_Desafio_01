@@ -55,8 +55,8 @@ public class LoanServices implements LoanRepository {
         if(listLoan.getFirst().getStateLoan().equals(StatusLoan.LATE)){
             for(Loan correntLoan : listLoan){
                 BigDecimal valueTax = new BigDecimal(0);
-                BigDecimal taxPerDay = new BigDecimal(0.2);
-                BigDecimal ratePerDay = new BigDecimal(0.05);
+                BigDecimal taxPerDay = new BigDecimal(2.0);
+                BigDecimal ratePerDay = new BigDecimal(0.5);
 
                 long days = ChronoUnit.DAYS.between(correntLoan.getDateLoan(), correntLoan.getReturnDate());
 
@@ -77,7 +77,12 @@ public class LoanServices implements LoanRepository {
         if(id <= 0){
             throw new ServicesException("Invalid id");
         }
+
         Loan loan = loanDao.selectLoanById(id);
+        if(loan.getStateLoan().equals(StatusLoan.COMPLETE)){
+            throw new ServicesException("This loan is already marked as COMPLETE");
+        }
+        
         bookDao.updateBookPlusQT(loan.getBook().getId(), 1);
         loanDao.updateLoanCOMPLETE(id);
     }
