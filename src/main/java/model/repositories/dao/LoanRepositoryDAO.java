@@ -11,4 +11,6 @@ public interface LoanRepositoryDAO {
     public Loan selectLoanByMember(Member member);
     public List<Loan> selectLoanByStatus(StatusLoan status);
     public List<Loan> selectAllLoan();
+    public Loan selectLoanById(int id);
+    public void updateLoanCOMPLETE(int id);
 }

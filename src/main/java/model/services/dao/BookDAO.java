@@ -161,7 +161,7 @@ public class BookDAO implements BookRepositoryDAO {
     }
 
     @Override
-    public void updateBookQt(int idBook, int quantity) {
+    public void updateBookMinusQT(int idBook, int quantity) {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement("UPDATE Books SET quantity = quantity - ? WHERE (idBooks = ?)");
@@ -179,7 +179,27 @@ public class BookDAO implements BookRepositoryDAO {
         finally {
             ConnectionFactory.closePreparedStatement(st);
         }
+    }
 
+    @Override
+    public void updateBookPlusQT(int idBook, int quantity) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE Books SET quantity = quantity + ? WHERE (idBooks = ?)");
+            st.setInt(1, quantity);
+            st.setInt(2, idBook);
+
+            int rowsAffected = st.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("\nThe update was complete");
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error to change book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(st);
+        }
     }
 
     @Override
