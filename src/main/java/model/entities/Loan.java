@@ -2,26 +2,35 @@ package model.entities;
 
 import model.entities.enumeration.StatusLoan;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Loan {
 
+    private int id;
     private Book book;
-
     private Member member;
     private LocalDate dateLoan;
     private LocalDate returnDate;
     private StatusLoan stateLoan;
-    private Double taxFine;
+    private BigDecimal taxFine;
 
-    public Loan(Book book, Member member, LocalDate dateLoan, LocalDate returnDate, StatusLoan stateLoan, Double taxFine) {
+    public Loan(Book book, Member member, LocalDate dateLoan, LocalDate returnDate, StatusLoan stateLoan, BigDecimal taxFine) {
         this.book = book;
         this.member = member;
         this.dateLoan = dateLoan;
         this.returnDate = returnDate;
         this.stateLoan = stateLoan;
         this.taxFine = taxFine;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Book getBook() {
@@ -64,8 +73,12 @@ public class Loan {
         this.stateLoan = stateLoan;
     }
 
-    public Double getTaxFine() {
+    public BigDecimal getTaxFine() {
         return taxFine;
+    }
+
+    public void setTaxFine(BigDecimal taxFine) {
+        this.taxFine = taxFine;
     }
 
     @Override

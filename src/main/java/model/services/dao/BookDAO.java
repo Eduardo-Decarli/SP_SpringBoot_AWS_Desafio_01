@@ -161,7 +161,7 @@ public class BookDAO implements BookRepositoryDAO {
     }
 
     @Override
-    public void updateBookQt(int idBook, int quantity) {
+    public void updateBookMinusQT(int idBook, int quantity) {
         PreparedStatement st = null;
         try{
             st = conn.prepareStatement("UPDATE Books SET quantity = quantity - ? WHERE (idBooks = ?)");
@@ -179,7 +179,62 @@ public class BookDAO implements BookRepositoryDAO {
         finally {
             ConnectionFactory.closePreparedStatement(st);
         }
+    }
 
+    @Override
+    public void updateBookPlusQT(int idBook, int quantity) {
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement("UPDATE Books SET quantity = quantity + ? WHERE (idBooks = ?)");
+            st.setInt(1, quantity);
+            st.setInt(2, idBook);
+
+            int rowsAffected = st.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("\nThe update was complete");
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error to change book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(st);
+        }
+    }
+
+    @Override
+    public Book findBookById(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Book book = null;
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Books WHERE idBooks = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if(rs.next()){
+                int idBook = rs.getInt("idBooks");
+                String title = rs.getString("title");
+                int authorId = rs.getInt("author");
+                LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
+                long isbn = rs.getLong("isbn");
+                String gender = rs.getString("gender");
+                int quantity = rs.getInt("quantity");
+
+                AuthorDAO authorDao = new AuthorDAO();
+                Author author = authorDao.selectAuthorById(authorId);
+                book = new Book(title, author,datePublication, isbn, gender, quantity);
+                book.setId(idBook);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the book: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return book;
     }
 }
 
