@@ -26,6 +26,9 @@ public class BookServices implements BookRepository {
         if(String.valueOf(book.getIsbn()).length() != 13){
             throw new ServicesException("Invalid ISBN, ISBN require 13 numbers");
         }
+        if(bookDao.selectBookByIsbn(book.getIsbn()) != null){
+            throw new ServicesException("Invalid ISBN, there is a book with this code in stock");
+        }
         bookDao.insertBook(book);
     }
 

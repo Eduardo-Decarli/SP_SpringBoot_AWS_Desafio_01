@@ -5,6 +5,8 @@ import model.entities.Member;
 import model.repositories.MemberRepository;
 import model.services.dao.MemberDAO;
 
+import java.util.List;
+
 public class MemberServices implements MemberRepository {
 
     MemberDAO memberDao;
@@ -33,5 +35,14 @@ public class MemberServices implements MemberRepository {
         }
 
         return member;
+    }
+
+    @Override
+    public List<Member> findAllMembers() {
+        List<Member> members = memberDao.selectAllMembers();
+        if(members.isEmpty()){
+            throw new ServicesException("There is not nothing member registered");
+        }
+        return members;
     }
 }

@@ -86,7 +86,8 @@ public class Loan {
 
     @Override
     public String toString() {
-        return  "Book " + book +
+        return  "Id: " + id +
+                ", Book " + book +
                 ", Member: " + member.getName() +
                 ", Date of Loan: " + dateLoan.format(fmt) +
                 ", Date of Return: " + returnDate.format(fmt) +

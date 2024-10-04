@@ -84,6 +84,6 @@ public class Book {
                 ", Date of Publication: " + datePlublication.format(fmt) +
                 ", ISBN: " + isbn +
                 ", Genre: " + genre +
-                ", Quantity: " + quantity;
+                ", Quantity in Stock: " + quantity;
     }
 }
