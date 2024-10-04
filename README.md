@@ -24,6 +24,7 @@ Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema
 
 ## Funcionalidades Principais
 
+- O sistema utiliza **Lambda** para ordenar os livros por títulos.
 
 
 ## Funcionalidades do Banco de dados

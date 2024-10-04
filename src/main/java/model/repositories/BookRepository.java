@@ -10,5 +10,4 @@ public interface BookRepository {
     public Book findBookByIsbn(long isbn);
     public List<Book> findAllBooks();
     public List<Book> findBooksAuthor(int id);
-    public void minusQtBook(Book book, int qt);
 }

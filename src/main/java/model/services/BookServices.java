@@ -40,7 +40,10 @@ public class BookServices implements BookRepository {
         if(bookDao.selectAllBooks().isEmpty()){
             throw new ServicesException("none books registered");
         }
-        return bookDao.selectAllBooks();
+        List<Book> listBooks = bookDao.selectAllBooks();
+        System.out.println("These are the books");
+        listBooks.sort((bookTitle1, bookTitle2) -> bookTitle1.getTitle().toUpperCase().compareTo(bookTitle2.getTitle().toUpperCase()));
+        return listBooks;
     }
 
     @Override
@@ -51,15 +54,12 @@ public class BookServices implements BookRepository {
         List<Book> listBook = bookDao.selectBooksByAuthor(id);
 
         if(listBook.isEmpty()){
+            System.out.println("There are not have a books his Author");
             return null;
         }else {
             System.out.println("These are the books");
+            listBook.sort((bookTitle1, bookTitle2) -> bookTitle1.getTitle().toUpperCase().compareTo(bookTitle2.getTitle().toUpperCase()));
             return listBook;
         }
-    }
-
-    @Override
-    public void minusQtBook(Book book, int qt) {
-
     }
 }
