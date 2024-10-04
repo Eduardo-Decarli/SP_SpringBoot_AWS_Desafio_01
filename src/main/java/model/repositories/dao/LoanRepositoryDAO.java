@@ -4,8 +4,11 @@ import model.entities.Loan;
 import model.entities.Member;
 import model.entities.enumeration.StatusLoan;
 
-public interface LoanRepository {
+import java.util.List;
+
+public interface LoanRepositoryDAO {
     public void insertLoan(Loan loan);
     public Loan selectLoanByMember(Member member);
-    public Loan selectLoanByStatus(StatusLoan status);
+    public List<Loan> selectLoanByStatus(StatusLoan status);
+    public List<Loan> selectAllLoan();
 }

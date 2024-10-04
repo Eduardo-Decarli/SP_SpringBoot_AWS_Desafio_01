@@ -6,14 +6,14 @@ import model.entities.Loan;
 import model.entities.enumeration.StatusLoan;
 import model.repositories.LoanRepository;
 import model.services.dao.BookDAO;
-import model.services.dao.LoanDAO;
+import model.services.dao.LoanDAODAO;
 
 public class LoanServices implements LoanRepository {
 
-    private LoanDAO loanDao;
+    private LoanDAODAO loanDao;
     private BookDAO bookDao = new BookDAO();
 
-    public LoanServices(LoanDAO loanDao){
+    public LoanServices(LoanDAODAO loanDao){
         this.loanDao = loanDao;
     }
 

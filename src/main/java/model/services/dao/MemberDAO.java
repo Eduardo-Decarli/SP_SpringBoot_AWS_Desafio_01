@@ -2,6 +2,7 @@ package model.services.dao;
 
 import exceptions.DaoException;
 import model.entities.Author;
+import model.entities.Book;
 import model.entities.Member;
 import model.repositories.dao.MemberRepositoryDAO;
 
@@ -52,6 +53,38 @@ public class MemberDAO implements MemberRepositoryDAO {
         try{
             stmt = conn.prepareStatement("SELECT * FROM Member WHERE email = ?");
             stmt.setString(1, email);
+            rs = stmt.executeQuery();
+
+            if(rs.next()){
+                int idMember = rs.getInt("idMember");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                long phoneNumber = rs.getLong("phoneNumber");
+                String emailMember = rs.getString("email");
+                LocalDate dateAssociation = rs.getDate("dateAssociation").toLocalDate();
+
+                member = new Member(name, address, phoneNumber, emailMember, dateAssociation);
+                member.setId(idMember);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the Member: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return member;
+    }
+
+    @Override
+    public Member selectMemberById(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Member member = null;
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Member WHERE idMember = ?");
+            stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             if(rs.next()){

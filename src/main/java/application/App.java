@@ -1,6 +1,5 @@
 package application;
 
-import exceptions.ServicesException;
 import model.entities.*;
 import model.entities.enumeration.StatusLoan;
 import model.services.AuthorServices;
@@ -9,7 +8,7 @@ import model.services.LoanServices;
 import model.services.MemberServices;
 import model.services.dao.AuthorDAO;
 import model.services.dao.BookDAO;
-import model.services.dao.LoanDAO;
+import model.services.dao.LoanDAODAO;
 import model.services.dao.MemberDAO;
 
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ public class App {
         AuthorServices authorServices = new AuthorServices(new AuthorDAO());
         BookServices bookServices = new BookServices(new BookDAO());
         MemberServices memberServices = new MemberServices(new MemberDAO());
-        LoanServices loanServices = new LoanServices(new LoanDAO());
+        LoanServices loanServices = new LoanServices(new LoanDAODAO());
 
         Member member = null;
         Author author = null;
@@ -84,6 +83,7 @@ public class App {
             System.out.println("Press 5 to register a new return");
             System.out.println("Press 6 to generate a report");
             System.out.println("Press 7 to exit");
+            System.out.print("Number selected: ");
             optionSelected = sc.nextInt();
             sc.nextLine();
 
@@ -232,6 +232,21 @@ public class App {
                     book = bookServices.findBookByIsbn(isbnBook);
                     Loan loan = new Loan(book, member, dateLoan, dateReturn, StatusLoan.ACTIVE, taxFine);
                     loanServices.registerLoan(loan);
+                    break;
+
+                case 5:
+                    //retorno de um empréstimo
+
+                    //lista os emprestimos
+
+                    //Seleciona o ID do loan
+
+                    //se tiver, mostrar o status e o valor a se pagar
+
+                    //aumentar a quantidade de um livro no banco de dados
+
+                    //permitir o usuario a trocar o status e fazer o update no banco de dados
+
                     break;
             }
         }

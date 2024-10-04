@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Loan {
 
+    private int id;
     private Book book;
-
     private Member member;
     private LocalDate dateLoan;
     private LocalDate returnDate;
@@ -22,6 +22,14 @@ public class Loan {
         this.returnDate = returnDate;
         this.stateLoan = stateLoan;
         this.taxFine = taxFine;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Book getBook() {

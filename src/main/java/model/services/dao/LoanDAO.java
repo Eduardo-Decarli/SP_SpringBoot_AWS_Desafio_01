@@ -1,22 +1,29 @@
 package model.services.dao;
 
 import exceptions.DaoException;
+import model.entities.Author;
 import model.entities.Book;
 import model.entities.Loan;
 import model.entities.Member;
 import model.entities.enumeration.StatusLoan;
-import model.repositories.dao.LoanRepository;
+import model.repositories.dao.LoanRepositoryDAO;
+import model.services.AuthorServices;
 import model.services.BookServices;
 import model.services.MemberServices;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static model.services.dao.ConnectionFactory.getConnection;
 
-public class LoanDAO implements LoanRepository {
+public class LoanDAO implements LoanRepositoryDAO {
 
     Connection conn = getConnection();
 
@@ -65,7 +72,47 @@ public class LoanDAO implements LoanRepository {
     }
 
     @Override
-    public Loan selectLoanByStatus(StatusLoan status) {
-        return null;
+    public List<Loan> selectLoanByStatus(StatusLoan status) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Loan> listLoan = new ArrayList<>();
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Loan WHERE stateLoan = ?");
+            stmt.setString(1, status.name());
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                int idLoan = rs.getInt("idLoan");
+                int loanBookId = rs.getInt("loanBooks");
+                int memberId = rs.getInt("memberId");
+                LocalDate dateLoan = rs.getDate("dateLoan").toLocalDate();
+                LocalDate returnDate = rs.getDate("returnDate").toLocalDate();
+                String stateLoan = rs.getString("stateLoan");
+                double taxFine = rs.getDouble("taxFine");
+
+                BookDAO bookDAO = new BookDAO();
+                Book loanBook = bookDAO.findBookById(loanBookId); // Criar um findById para book
+
+                MemberDAO memberDAO = new MemberDAO();
+                Member member = memberDAO.selectMemberById(memberId);
+                Loan loan = new Loan(loanBook, member, dateLoan, returnDate, StatusLoan.valueOf(stateLoan), taxFine);
+                loan.setId(idLoan);
+
+                listLoan.add(loan);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the author: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return listLoan;
+    }
+
+    @Override
+    public List<Loan> selectAllLoan() {
+        return List.of();
     }
 }
