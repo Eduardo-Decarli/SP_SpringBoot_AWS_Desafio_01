@@ -4,9 +4,12 @@ import model.entities.enumeration.StatusLoan;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Loan {
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private int id;
     private Book book;
@@ -85,8 +88,8 @@ public class Loan {
     public String toString() {
         return  "Book " + book +
                 ", Member: " + member.getName() +
-                ", Date of Loan: " + dateLoan +
-                ", Date of Return: " + returnDate +
+                ", Date of Loan: " + dateLoan.format(fmt) +
+                ", Date of Return: " + returnDate.format(fmt) +
                 ", Status of Loan: " + stateLoan +
                 ", Tax: " + taxFine;
     }

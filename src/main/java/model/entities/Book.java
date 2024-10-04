@@ -5,8 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Book {
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private Integer id;
 
@@ -78,7 +81,7 @@ public class Book {
     public String toString() {
         return  "Title: " + title +
                 ", Author: " + author.getName() +
-                ", Date of Publication: " + datePlublication +
+                ", Date of Publication: " + datePlublication.format(fmt) +
                 ", ISBN: " + isbn +
                 ", Genre: " + genre +
                 ", Quantity: " + quantity;

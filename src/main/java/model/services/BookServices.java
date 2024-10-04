@@ -5,9 +5,12 @@ import model.entities.Book;
 import model.repositories.BookRepository;
 import model.services.dao.BookDAO;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class BookServices implements BookRepository {
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private BookDAO bookDao;
 
@@ -32,6 +35,7 @@ public class BookServices implements BookRepository {
             throw new ServicesException("Invalid ISBN, ISBN require 13 numbers");
         }
         Book book = bookDao.selectBookByIsbn(isbn);
+        book.getDatePlublication().format(fmt);
         return book;
     }
 
@@ -41,7 +45,6 @@ public class BookServices implements BookRepository {
             throw new ServicesException("none books registered");
         }
         List<Book> listBooks = bookDao.selectAllBooks();
-        System.out.println("These are the books");
         listBooks.sort((bookTitle1, bookTitle2) -> bookTitle1.getTitle().toUpperCase().compareTo(bookTitle2.getTitle().toUpperCase()));
         return listBooks;
     }

@@ -3,14 +3,17 @@ package model.entities;
 import model.services.dao.BookDAO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Member extends People{
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private int id;
     private String address;
     private long phoneNumber;
     private String email;
     private LocalDate dateAssociation;
-
     private Loan loan;
 
     public Member(String name, String address, long phoneNumber, String email, LocalDate dateAssociation) {
@@ -71,7 +74,7 @@ public class Member extends People{
                 ", Address: " + address +
                 ", Phone Number: " + phoneNumber +
                 ", Email='" + email +
-                ", Date of Association: " + dateAssociation +
+                ", Date of Association: " + dateAssociation.format(fmt) +
                 ", Loan: " + (loan != null ? loan.toString() : "does not have a loan");
     }
 }

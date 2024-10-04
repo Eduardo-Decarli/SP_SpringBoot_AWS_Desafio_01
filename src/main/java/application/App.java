@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -248,7 +249,7 @@ public class App {
             case 5:
                 //retorno de um empréstimo
                 System.out.println("== Return Loan ==");
-                System.out.println("Select A to active loan or L to Late");
+                System.out.println("Select A to loan active or L to Late");
                 char optionSelectReturnLoan = sc.nextLine().toUpperCase().charAt(0);
                 switch (optionSelectReturnLoan) {
                     case 'A':

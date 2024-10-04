@@ -3,7 +3,6 @@ package model.services.dao;
 import exceptions.DaoException;
 import model.entities.Author;
 import model.entities.Book;
-import model.entities.Loan;
 import model.repositories.dao.BookRepositoryDAO;
 import model.services.AuthorServices;
 

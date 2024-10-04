@@ -9,6 +9,7 @@ import model.services.dao.BookDAO;
 import model.services.dao.LoanDAO;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class LoanServices implements LoanRepository {
             for(Loan correntLoan : listLoan){
                 BigDecimal valueTax = new BigDecimal(0);
                 BigDecimal taxPerDay = new BigDecimal(2.0);
-                BigDecimal ratePerDay = new BigDecimal(0.5);
+                BigDecimal ratePerDay = new BigDecimal(0.05);
 
                 long days = ChronoUnit.DAYS.between(correntLoan.getDateLoan(), correntLoan.getReturnDate());
 
@@ -64,6 +65,8 @@ public class LoanServices implements LoanRepository {
                     valueTax = valueTax.add(taxPerDay);
                     valueTax = valueTax.add(valueTax.multiply(ratePerDay));
                 }
+
+                valueTax = valueTax.setScale(3, RoundingMode.HALF_UP);
                 correntLoan.setTaxFine(valueTax);
                 listTaxFine.add(correntLoan);
             }

@@ -24,8 +24,9 @@ Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema
 
 ## Funcionalidades Principais
 
-- O sistema utiliza **Lambda** para ordenar os livros por títulos.
+- O sistema utiliza **Lambda** para ordenar os livros em ordem alfabética por títulos.
 
+- A taxa de atraso está sendo calculada como BigDecimal e recebendo uma scala de 3 numeros após a virgula.
 
 ## Funcionalidades do Banco de dados
 
