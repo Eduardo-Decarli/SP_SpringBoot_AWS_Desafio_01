@@ -24,7 +24,9 @@ Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema
 
 ## Funcionalidades Principais
 
+- O sistema utiliza **Lambda** para ordenar os livros em ordem alfabética por títulos.
 
+- A taxa de atraso está sendo calculada como BigDecimal e recebendo uma scala de 3 numeros após a virgula.
 
 ## Funcionalidades do Banco de dados
 
@@ -54,3 +56,11 @@ Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema
 - Não permite emprestar um livro que não esteja no estoque
 
 - Não permite cadastrar emprestimos com datas anteriores ou posteriores de forma errada. 
+
+## Como Usar a aplicação
+
+1. fazer o git clone ou baixar manualmente a aplicação pelo github.
+
+2. Abrir ela com o InteliJ ou outra IDE de escolha.
+
+3. Importar o arquivo do banco de dados localizado na pasta utilitys do projeto.

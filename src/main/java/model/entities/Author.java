@@ -61,7 +61,8 @@ public class Author extends People {
 
     @Override
     public String toString() {
-        return "Author " + getName() +
+        return "Id: " + getId() +
+                ", Author: " + getName() +
                 ", DateOfBirth: " + dateOfBirth.format(fmt) +
                 ", Nationality: " + nationality +
                 ", Biography: " + biography;

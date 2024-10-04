@@ -3,7 +3,6 @@ package model.services.dao;
 import exceptions.DaoException;
 import model.entities.Author;
 import model.entities.Book;
-import model.entities.Loan;
 import model.repositories.dao.BookRepositoryDAO;
 import model.services.AuthorServices;
 
@@ -36,7 +35,9 @@ public class BookDAO implements BookRepositoryDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if(rowsAffected > 0){
-                System.out.println("\nThe book was saved successfully");
+                System.out.println("\n=====================");
+                System.out.println(" The book was saved successfully");
+                System.out.println("=====================\n");
             }
         }
         catch(SQLException e){

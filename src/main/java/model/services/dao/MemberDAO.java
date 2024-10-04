@@ -108,4 +108,36 @@ public class MemberDAO implements MemberRepositoryDAO {
         }
         return member;
     }
+
+    @Override
+    public List<Member> selectAllMembers() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Member> authorsList = new ArrayList<>();
+        try{
+            stmt = conn.prepareStatement("SELECT * FROM Member");
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                int idMember = rs.getInt("idMember");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                long phoneNumber = rs.getLong("phoneNumber");
+                String emailMember = rs.getString("email");
+                LocalDate dateAssociation = rs.getDate("dateAssociation").toLocalDate();
+
+                Member member = new Member(name, address, phoneNumber, emailMember, dateAssociation);
+                member.setId(idMember);
+                authorsList.add(member);
+            }
+        }
+        catch(SQLException e){
+            throw new DaoException("Error finding the author: " + e.getMessage());
+        }
+        finally {
+            ConnectionFactory.closePreparedStatement(stmt);
+            ConnectionFactory.closeResultSet(rs);
+        }
+        return authorsList;
+    }
 }
