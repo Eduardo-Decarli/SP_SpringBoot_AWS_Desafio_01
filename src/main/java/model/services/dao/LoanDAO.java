@@ -137,7 +137,7 @@ public class LoanDAO implements LoanRepositoryDAO {
                 double taxFine = rs.getDouble("taxFine");
 
                 BookDAO bookDAO = new BookDAO();
-                Book loanBook = bookDAO.findBookById(booksId); // Criar um findById para book
+                Book loanBook = bookDAO.findBookById(booksId);
 
                 MemberDAO memberDAO = new MemberDAO();
                 Member member = memberDAO.selectMemberById(memberId);

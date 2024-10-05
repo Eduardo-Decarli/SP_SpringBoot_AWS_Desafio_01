@@ -267,7 +267,7 @@ public class App {
                 case 4:
                     System.out.println("\n=== Loan Options ===");
                     System.out.println("Press 1 to register a new loan");
-                    System.out.println("Press 2 to list pending loans");
+                    System.out.println("Press 2 to register a return");
                     System.out.print("Option selected: ");
                     optionSelected = sc.nextInt();
                     sc.nextLine();
@@ -284,6 +284,7 @@ public class App {
                             System.out.print("Option Selected: ");
                             optionSelected = sc.nextInt();
                             sc.nextLine();
+                            System.out.println();
                             if (!(optionSelected == 1 || optionSelected == 2)) {
                                 throw new AppException("Invalid Option");
                             }
@@ -333,9 +334,14 @@ public class App {
                             break;
 
                         case 2:
-                            System.out.println("== Return Loan ==");
+                            System.out.println("=== Return Loan ===");
                             System.out.println("Select A to loan active or L to Late");
+                            System.out.print("Option Selected: ");
                             char optionSelectReturnLoan = sc.nextLine().toUpperCase().charAt(0);
+                            if (!(optionSelectReturnLoan == 'A' || optionSelectReturnLoan == 'L')) {
+                                throw new AppException("Invalid Option");
+                            }
+
                             switch (optionSelectReturnLoan) {
                                 case 'A':
                                     System.out.println("=== List all loans with active status ===");
@@ -354,8 +360,11 @@ public class App {
                                     break;
 
                                 case 'L':
-                                    System.out.println("=== List all loans with late status ===");
+                                    System.out.println("\n=== List all loans with late status ===");
                                     List<Loan> listLoanLate = loanServices.findLoanByStatus(StatusLoan.LATE);
+                                    if(listLoanLate == null){
+                                        break;
+                                    }
                                     for (Loan correntLoan : listLoanLate) {
                                         System.out.println(correntLoan);
                                     }
@@ -364,7 +373,6 @@ public class App {
                                     sc.nextLine();
 
                                     Loan loanLate = loanServices.findLoanById(loanLateId);
-                                    loanServices.loanReturn(loanLate.getId());
                                     loanServices.loanReturn(loanLate.getId());
 
 
