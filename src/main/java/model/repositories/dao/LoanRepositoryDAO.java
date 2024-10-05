@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface LoanRepositoryDAO {
     public void insertLoan(Loan loan);
-    public Loan selectLoanByMember(Member member);
     public List<Loan> selectLoanByStatus(StatusLoan status);
     public List<Loan> selectAllLoan();
     public Loan selectLoanById(int id);
