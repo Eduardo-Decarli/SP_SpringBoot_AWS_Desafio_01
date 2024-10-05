@@ -87,9 +87,8 @@ public class App {
             System.out.println("Press 2 to list Author options");
             System.out.println("Press 3 to list Member options");
             System.out.println("Press 4 to list loan options");
-            System.out.println("Press 5 to register a new return");
-            System.out.println("Press 6 to generate a report");
-            System.out.println("Press 7 to exit\n");
+            System.out.println("Press 5 to generate a loan report");
+            System.out.println("Press 6 to exit\n");
             System.out.print("Option selected: ");
             optionSelected = sc.nextInt();
             sc.nextLine();
@@ -267,7 +266,7 @@ public class App {
                 case 4:
                     System.out.println("\n=== Loan Options ===");
                     System.out.println("Press 1 to register a new loan");
-                    System.out.println("Press 2 to list pending loans");
+                    System.out.println("Press 2 to register a return");
                     System.out.print("Option selected: ");
                     optionSelected = sc.nextInt();
                     sc.nextLine();
@@ -284,6 +283,7 @@ public class App {
                             System.out.print("Option Selected: ");
                             optionSelected = sc.nextInt();
                             sc.nextLine();
+                            System.out.println();
                             if (!(optionSelected == 1 || optionSelected == 2)) {
                                 throw new AppException("Invalid Option");
                             }
@@ -333,9 +333,14 @@ public class App {
                             break;
 
                         case 2:
-                            System.out.println("== Return Loan ==");
+                            System.out.println("=== Return Loan ===");
                             System.out.println("Select A to loan active or L to Late");
+                            System.out.print("Option Selected: ");
                             char optionSelectReturnLoan = sc.nextLine().toUpperCase().charAt(0);
+                            if (!(optionSelectReturnLoan == 'A' || optionSelectReturnLoan == 'L')) {
+                                throw new AppException("Invalid Option");
+                            }
+
                             switch (optionSelectReturnLoan) {
                                 case 'A':
                                     System.out.println("=== List all loans with active status ===");
@@ -354,8 +359,11 @@ public class App {
                                     break;
 
                                 case 'L':
-                                    System.out.println("=== List all loans with late status ===");
+                                    System.out.println("\n=== List all loans with late status ===");
                                     List<Loan> listLoanLate = loanServices.findLoanByStatus(StatusLoan.LATE);
+                                    if(listLoanLate == null){
+                                        break;
+                                    }
                                     for (Loan correntLoan : listLoanLate) {
                                         System.out.println(correntLoan);
                                     }
@@ -365,20 +373,22 @@ public class App {
 
                                     Loan loanLate = loanServices.findLoanById(loanLateId);
                                     loanServices.loanReturn(loanLate.getId());
-                                    loanServices.loanReturn(loanLate.getId());
 
 
                                     System.out.println("The loan was returned successful");
                                     break;
                             }
-                        case 5:
-                            //Emitir relatorio
                             break;
                     }
                     break;
+
+                case 5:
+                    System.out.println();
+                    System.out.println(loanServices.generateReport());
+                    break;
             }
         }
-        while (optionSelected != 7);
+        while (optionSelected != 6);
 
         sc.close();
     }
