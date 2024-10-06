@@ -187,6 +187,7 @@ public class App {
                     break;
 
                 case 2:
+                    System.out.println("\n=== Author Options ===");
                     System.out.println("Press 1 to list authors in the system");
                     System.out.println("Press 2 to register new author in the system");
                     System.out.print("Option selected: ");
@@ -383,7 +384,7 @@ public class App {
                     break;
 
                 case 5:
-                    System.out.println("\n=== Loan Options ===");
+                    System.out.println("\n=== Report Options ===");
                     System.out.println("Press 1 to generate a report about loans");
                     System.out.println("Press 2 to generate a report about members");
                     System.out.print("Option selected: ");

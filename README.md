@@ -1,66 +1,92 @@
 # Library Manager
 
-Esse é o sistema que faz a gerencia de uma biblioteca, onde o gestor do sistema pode cadastrar outros gestores, cadastrar livros, emprestimos e retornos de emprestimos. O sistema foi desenvolvido para ser trabalhado inteiramente pelo terminal, utilizando a tecnologia java e com associação ao banco de dados.
+This system manages a library, where the system manager can register other managers, register books, loans, and returns of loans. The system was developed to be entirely operated through the terminal, using Java technology and integrated with a database.
 
-## Fluxo de Dados
+## Data Flow
 
-1. O sistema solicita ao usuário se quer fazer login como Member (Utilizando o email como forma de acesso) ou se quer registrar outro um novo Member.
+1. The system asks the user whether they want to log in as a Member (using email as the access method) or register a new Member.
 
-2. O sistema apresenta um menu de opções aonde o usuario pode escolher entre **registrar um livro**, **registrar um autor**, **registrar um Member**(Segundo método de registrar um Member), **registrar um emprestimo**, **registrar um retorno de emprestimo**, **gerar um relatório** e **sair do sistema**.
+2. The system presents a menu where the user can choose between viewing book options, members, loans, and authors.
 
-3. Ao selecionar registrar um livro, o usuario irá inserir os dados do livro e o sistema solicita se quer associar a um autor já cadastrado ou cadastrar um novo autor para aquele livro.
+- Books
+    - Register a new book
+        - To register a book, the system will ask for an author. The user can associate an existing author or create a new one.
+    - List books in the database
 
-4. 
+- Authors
+    - List authors in the system
+    - Register a new author
 
-## Tecnologias utilizadas
+- Members
+    - List members in the system
+    - Register a new member in the system
+
+- Loans
+    - Register a loan
+        - The system asks if the user wants to list books by author for the loan or not
+        - The system requests the ISBN of a book to register for the loan
+    - Register a return
+        - The system asks whether to return by active or late loans
+
+## Technologies Used
 
 - VSCode
-- InteliJ
+- IntelliJ
 - Java 21
 - Git
 - GitHub
 - MySQL
 - DrawIo
 
-## Funcionalidades Principais
+## Key Features
 
-- O sistema utiliza **Lambda** para ordenar os livros em ordem alfabética por títulos.
+- The system uses **Lambda** and **Stream** to sort books alphabetically by title.
 
-- A taxa de atraso está sendo calculada como BigDecimal e recebendo uma scala de 3 numeros após a virgula.
+- The late fee is calculated as **BigDecimal** and is set to a scale of 3 digits after the decimal point.
 
-## Funcionalidades do Banco de dados
+- Use of **HashSet** to list Members with overdue loans in the Member report.
 
-- Classe AuthorDAO
-    - Busca autor pelo id.
-    - Busca autor pelo nome.
-    - Busca todos os autores.
-    - Insere um novo autor.
+- Use of a generic interface that overrides in **LoanServices** and **MemberServices** classes for report generation.
 
-- Classe BookDAO 
-    - Seleciona um livro pelo Isbn.
+## Database Features
 
-- Classe MemberDAO
-    - Insere um membro no banco de dados
-    - Busca um membro pelo email
+- AuthorDAO Class
+    - Search author by ID.
+    - Search author by name.
+    - Search all authors.
+    - Insert a new author.
 
-## Lógica Preventiva
+- BookDAO Class
+    - Select a book by ISBN.
 
-- Não permite cadastrar dois Member com o mesmo Email.
+- MemberDAO Class
+    - Insert a member into the database
+    - Search a member by email
 
-- Não permite enviar um email vazio para o banco de dados.
+## Preventive Logic
 
-- ISBN de um livro é obrigatoriamente 13 digitos.
+- Does not allow registering two Members with the same email.
 
-- Não permite cadastrar dois autores com o mesmo nome.
+- Does not allow submitting an empty email to the database.
 
-- Não permite emprestar um livro que não esteja no estoque
+- A book's ISBN must be 13 digits long.
 
-- Não permite cadastrar emprestimos com datas anteriores ou posteriores de forma errada. 
+- Does not allow registering two authors with the same name.
 
-## Como Usar a aplicação
+- Does not allow lending a book that is not in stock.
 
-1. fazer o git clone ou baixar manualmente a aplicação pelo github.
+- Does not allow registering loans with incorrect past or future dates.
 
-2. Abrir ela com o InteliJ ou outra IDE de escolha.
+- Does not allow assigning a status to a loan that has already been completed.
 
-3. Importar o arquivo do banco de dados localizado na pasta utilitys do projeto.
+## How to Use the Application
+
+1. Clone the repository or manually download the application from GitHub.
+
+2. Open it with IntelliJ or another IDE of your choice.
+
+3. Configure the database connection in the **db.properties** file.
+
+4. Open SQL Workbench and execute the database creation command, located in utilities > LibraryDB.
+
+5. Run the code from the IDE.
