@@ -88,7 +88,7 @@ public class App {
             System.out.println("Press 3 to list Member options");
             System.out.println("Press 4 to list loan options");
             System.out.println("Press 5 to generate a loan report");
-            System.out.println("Press 6 to exit\n");
+            System.out.println("Press 6 to exit");
             System.out.print("Option selected: ");
             optionSelected = sc.nextInt();
             sc.nextLine();
@@ -187,6 +187,7 @@ public class App {
                     break;
 
                 case 2:
+                    System.out.println("\n=== Author Options ===");
                     System.out.println("Press 1 to list authors in the system");
                     System.out.println("Press 2 to register new author in the system");
                     System.out.print("Option selected: ");
@@ -383,8 +384,26 @@ public class App {
                     break;
 
                 case 5:
+                    System.out.println("\n=== Report Options ===");
+                    System.out.println("Press 1 to generate a report about loans");
+                    System.out.println("Press 2 to generate a report about members");
+                    System.out.print("Option selected: ");
+                    optionSelected = sc.nextInt();
+                    sc.nextLine();
                     System.out.println();
-                    System.out.println(loanServices.generateReport());
+                    if (!(optionSelected == 1 || optionSelected == 2)) {
+                        throw new AppException("Invalid Option");
+                    }
+                    switch (optionSelected){
+                        case 1:
+                            System.out.println();
+                            System.out.println(loanServices.generateReport());
+                            break;
+                        case 2:
+                            System.out.println();
+                            System.out.println(memberServices.generateReport());
+                            break;
+                    }
                     break;
             }
         }

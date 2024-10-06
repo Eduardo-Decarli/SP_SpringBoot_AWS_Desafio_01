@@ -1,7 +1,6 @@
 package model.services;
 
 import exceptions.ServicesException;
-import model.entities.Book;
 import model.entities.Loan;
 import model.entities.enumeration.StatusLoan;
 import model.repositories.LoanRepository;
@@ -12,7 +11,6 @@ import model.services.dao.LoanDAO;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoanServices implements LoanRepository, ReportRepository<Loan> {
