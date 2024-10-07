@@ -29,7 +29,7 @@ public class BookDAO implements BookRepositoryDAO {
             stmt.setString(1, book.getTitle());
             stmt.setInt(2, book.getAuthor().getId());
             stmt.setDate(3, java.sql.Date.valueOf(book.getDatePlublication()));
-            stmt.setFloat(4, book.getIsbn());
+            stmt.setLong(4, book.getIsbn());
             stmt.setString(5, book.getGenre());
             stmt.setInt(6, book.getQuantity());
 
