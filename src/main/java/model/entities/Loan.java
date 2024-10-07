@@ -86,12 +86,14 @@ public class Loan {
 
     @Override
     public String toString() {
-        return  "Id: " + id +
-                ", Book " + book +
+        return "\n=====================\n" +
+                "Loan ID: " + id +
+                "\nBook: " + book.getTitle() +
                 ", Member: " + member.getName() +
-                ", Date of Loan: " + dateLoan.format(fmt) +
+                "\nDate of Loan: " + dateLoan.format(fmt) +
                 ", Date of Return: " + returnDate.format(fmt) +
-                ", Status of Loan: " + stateLoan +
-                ", Tax: " + taxFine;
+                "\nStatus of Loan: " + stateLoan +
+                ", Tax Fine: " + taxFine +
+                "\n=====================\n";
     }
 }

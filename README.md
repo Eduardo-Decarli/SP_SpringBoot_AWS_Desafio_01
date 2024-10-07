@@ -28,6 +28,12 @@ This system manages a library, where the system manager can register other manag
     - Register a return
         - The system asks whether to return by active or late loans
 
+- report
+    - financial report
+        - The system generates a report of the sum in bigDecimal of all loan rates with complete status
+    - members with late loans
+        - The system generates a report of all members with late loans
+
 ## Technologies Used
 
 - VSCode
@@ -57,11 +63,26 @@ This system manages a library, where the system manager can register other manag
     - Insert a new author.
 
 - BookDAO Class
+    - Insert a new Book
     - Select a book by ISBN.
+    - Select books by Author
+    - Select all books in database
+    - Update quantity of book (minus)
+    - Update quantity of book (plus)
+    - Select a book by id
 
 - MemberDAO Class
     - Insert a member into the database
     - Search a member by email
+    - Select Member by id
+    - Select all members in database
+
+- LoanDAO Class
+    - Insert a new loan in database.
+    - Select a loan by status(ACTIVE, LATE or COMPLETE).
+    - Select all loans in database.
+    - Select Loan by id.
+    - Update loan to Complete.
 
 ## Preventive Logic
 

@@ -121,8 +121,10 @@ public class AuthorDAO implements AuthorRepositoryDAO {
             int rowsAffected = stmt.executeUpdate();
             rs = stmt.getGeneratedKeys();
             if(rowsAffected > 0){
-                int key = rs.getInt(1);
-                author.setId(key);
+                if(rs != null && rs.next()) {
+                    int key = rs.getInt(1);
+                    author.setId(key);
+                }
                 System.out.println("\n=====================");
                 System.out.println("The author was saved successfully");
                 System.out.println("=====================\n");
