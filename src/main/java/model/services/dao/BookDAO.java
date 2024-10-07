@@ -169,10 +169,7 @@ public class BookDAO implements BookRepositoryDAO {
             st.setInt(1, quantity);
             st.setInt(2, idBook);
 
-            int rowsAffected = st.executeUpdate();
-            if(rowsAffected > 0){
-                System.out.println("\nThe update was complete");
-            }
+            st.executeUpdate();
         }
         catch(SQLException e){
             throw new DaoException("Error to change book: " + e.getMessage());
