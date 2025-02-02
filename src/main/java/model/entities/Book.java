@@ -1,9 +1,5 @@
 package model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -16,11 +12,11 @@ public class Book {
     private String title;
     private Author author;
     private LocalDate datePlublication;
-    private long isbn;
+    private String isbn;
     private String genre;
     private Integer quantity;
 
-    public Book(String title, Author author, LocalDate datePlublication, long isbn, String genre, Integer quantity) {
+    public Book(String title, Author author, LocalDate datePlublication, String isbn, String genre, Integer quantity) {
         this.title = title;
         this.author = author;
         this.datePlublication = datePlublication;
@@ -61,7 +57,7 @@ public class Book {
         this.datePlublication = datePlublication;
     }
 
-    public long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 

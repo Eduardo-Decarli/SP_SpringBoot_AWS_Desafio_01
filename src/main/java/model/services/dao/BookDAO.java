@@ -16,7 +16,6 @@ import static model.services.dao.ConnectionFactory.getConnection;
 public class BookDAO implements BookRepositoryDAO {
 
     private Connection conn = getConnection();
-    private Book book = null;
 
 
     @Override
@@ -29,7 +28,7 @@ public class BookDAO implements BookRepositoryDAO {
             stmt.setString(1, book.getTitle());
             stmt.setInt(2, book.getAuthor().getId());
             stmt.setDate(3, java.sql.Date.valueOf(book.getDatePlublication()));
-            stmt.setLong(4, book.getIsbn());
+            stmt.setString(4, book.getIsbn());
             stmt.setString(5, book.getGenre());
             stmt.setInt(6, book.getQuantity());
 
@@ -49,13 +48,14 @@ public class BookDAO implements BookRepositoryDAO {
     }
 
     @Override
-    public Book selectBookByIsbn(long isbn) {
+    public Book selectBookByIsbn(String isbn) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        Book book = null;
 
         try{
             stmt = conn.prepareStatement("SELECT * FROM Books WHERE isbn = ?");
-            stmt.setLong(1, isbn);
+            stmt.setString(1, isbn);
             rs = stmt.executeQuery();
 
             if(rs.next()){
@@ -63,7 +63,7 @@ public class BookDAO implements BookRepositoryDAO {
                 String title = rs.getString("title");
                 int authorId = rs.getInt("author");
                 LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
-                long isbnBook = rs.getLong("isbn");
+                String isbnBook = rs.getString("isbn");
                 String gender = rs.getString("gender");
                 int quantity = rs.getInt("quantity");
 
@@ -71,6 +71,7 @@ public class BookDAO implements BookRepositoryDAO {
 
                 book = new Book( title, author, datePublication, isbnBook, gender, quantity);
                 book.setId(idBook);
+                System.out.println(book);
             }
         }
         catch(SQLException e){
@@ -93,6 +94,7 @@ public class BookDAO implements BookRepositoryDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Book> listBooks = new ArrayList<>();
+        Book book = null;
 
         try{
             stmt = conn.prepareStatement("SELECT * FROM Books WHERE author = ?");
@@ -104,7 +106,7 @@ public class BookDAO implements BookRepositoryDAO {
                 String title = rs.getString("title");
                 int authorId = rs.getInt("author");
                 LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
-                long isbnBook = rs.getLong("isbn");
+                String isbnBook = rs.getString("isbn");
                 String gender = rs.getString("gender");
                 int quantity = rs.getInt("quantity");
 
@@ -131,6 +133,8 @@ public class BookDAO implements BookRepositoryDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Book> listBooks = new ArrayList<>();
+        Book book = null;
+
         try{
             stmt = conn.prepareStatement("SELECT * FROM Books");
             rs = stmt.executeQuery();
@@ -140,7 +144,7 @@ public class BookDAO implements BookRepositoryDAO {
                 String title = rs.getString("title");
                 int authorId = rs.getInt("author");
                 LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
-                long isbn = rs.getLong("isbn");
+                String isbn = rs.getString("isbn");
                 String gender = rs.getString("gender");
                 int quantity = rs.getInt("quantity");
 
@@ -215,7 +219,7 @@ public class BookDAO implements BookRepositoryDAO {
                 String title = rs.getString("title");
                 int authorId = rs.getInt("author");
                 LocalDate datePublication = rs.getDate("datePublication").toLocalDate();
-                long isbn = rs.getLong("isbn");
+                String isbn = rs.getString("isbn");
                 String gender = rs.getString("gender");
                 int quantity = rs.getInt("quantity");
 

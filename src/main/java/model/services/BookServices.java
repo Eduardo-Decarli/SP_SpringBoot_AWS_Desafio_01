@@ -33,7 +33,7 @@ public class BookServices implements BookRepository {
     }
 
     @Override
-    public Book findBookByIsbn(long isbn) {
+    public Book findBookByIsbn(String isbn) {
         if(String.valueOf(isbn).length() != 13){
             throw new ServicesException("Invalid ISBN, ISBN require 13 numbers");
         }

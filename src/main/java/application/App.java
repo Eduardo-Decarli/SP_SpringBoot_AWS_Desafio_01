@@ -150,13 +150,13 @@ public class App {
                                 System.out.print("Write the Date of Publication (dd/MM/yyyy): ");
                                 LocalDate datePublication = LocalDate.parse(sc.nextLine(), fmt);
                                 System.out.print("Write the ISBN: ");
-                                long isbn = sc.nextLong();
-                                sc.nextLine();
+                                String isbn = sc.nextLine();
                                 System.out.print("Write the book's genre: ");
                                 String genre = sc.nextLine();
                                 System.out.print("Write quantity books arrive: ");
                                 int quantity = sc.nextInt();
                                 sc.nextLine();
+                                clearTerminal();
 
                                 System.out.println("\n=== let's write the author information ===");
                                 System.out.println("Press 1 associate an already registered author");
@@ -171,6 +171,7 @@ public class App {
 
                                 switch (optionSelected) {
                                     case 1:
+                                        clearTerminal();
                                         List<Author> authors = authorServices.findAllAuthors();
                                         for (Author correntAuthor : authors) {
                                             System.out.println(correntAuthor);
@@ -187,6 +188,7 @@ public class App {
                                         break;
 
                                     case 2:
+                                        clearTerminal();
                                         System.out.println("\n== Register a new author ==");
                                         System.out.print("Write the author's name: ");
                                         String authorName = sc.nextLine();
@@ -372,8 +374,7 @@ public class App {
                                 }
 
                                 System.out.print("What is the ISBN of Book: ");
-                                long isbnBook = sc.nextLong();
-                                sc.nextLine();
+                                String isbnBook = sc.nextLine();
                                 System.out.print("What is the Date of loan?(dd/MM/yyyy): ");
                                 LocalDate dateLoan = LocalDate.parse(sc.nextLine(), fmt);
                                 System.out.print("What is the return date?(dd/MM/yyyy): ");
