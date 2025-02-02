@@ -111,7 +111,9 @@ public class LoanServices implements LoanRepository, ReportRepository<Loan> {
 
         valueLoan = valueLoan.setScale(3, RoundingMode.HALF_UP);
 
-        return  "=== Loan value report ===\n" +
+        return "===============================\n" +
+               "       Loan value report       \n" +
+               "===============================\n" +
                 listLoans.size() +
                 " Loans were registered." +
                 "\nLoans with active status: " + activeLoan +

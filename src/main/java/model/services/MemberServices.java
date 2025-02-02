@@ -67,7 +67,9 @@ public class MemberServices implements MemberRepository, ReportRepository<Member
             return "No members have pending loans.";
         }
 
-        String report = "=== Members with pending loans ===\n";
+        String report = "===============================\n" +
+                        "   Members with pending loans  \n" +
+                        "===============================\n";
 
         for(Member correntMember : listLoanByMember){
             report += "Member: " + correntMember.getName() + " has a pending loan." +

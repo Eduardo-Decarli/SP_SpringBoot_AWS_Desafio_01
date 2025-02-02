@@ -35,7 +35,7 @@ public class App {
         Member member = null;
 
         System.out.println("=====================================");
-        System.out.println("      Welcome to Library Manager    ");
+        System.out.println("      Welcome to Library Manager     ");
         System.out.println("=====================================");
 
         int optionSelected;
@@ -53,11 +53,13 @@ public class App {
             switch (optionLogin) {
                 case 1:
                     clearTerminal();
-                    System.out.println("\n=== Login ===");
+                    System.out.println("=========================");
+                    System.out.println("          Login          ");
+                    System.out.println("=========================");
                     System.out.print("Enter with a email: ");
                     String emailLogin = sc.nextLine();
                     member = memberServices.findMemberByEmail(emailLogin);
-                    System.out.println("=====================================");
+                    System.out.println("\n=====================================");
                     System.out.println("         Login Complete");
                     System.out.println("         Hello! " + member.getName());
                     System.out.println("=====================================");
@@ -67,7 +69,9 @@ public class App {
 
                 case 2:
                     clearTerminal();
-                    System.out.println("=== Register ===");
+                    System.out.println("=========================");
+                    System.out.println("        Register         ");
+                    System.out.println("=========================");
                     System.out.print("Write your name: ");
                     String name = sc.nextLine();
                     System.out.print("Write your address (city/state): ");
@@ -95,10 +99,9 @@ public class App {
                 clearTerminal();
                 Author author = null;
                 Book book = null;
-
-                System.out.println("\n===============================");
+                System.out.println("==============================");
                 System.out.println("       Select an Option       ");
-                System.out.println("===============================");
+                System.out.println("==============================");
                 System.out.println("1. List Book Options");
                 System.out.println("2. List Author Options");
                 System.out.println("3. List Member Options");
@@ -118,7 +121,7 @@ public class App {
 
                     case 1:
                         clearTerminal();
-                        System.out.println("\n===============================");
+                        System.out.println("===============================");
                         System.out.println("        Book Options           ");
                         System.out.println("===============================");
                         System.out.println("1. List books in stock");
@@ -134,7 +137,9 @@ public class App {
                         switch (optionSelected) {
                             case 1:
                                 clearTerminal();
-                                System.out.println("=== Books in Stock ===");
+                                System.out.println("===============================");
+                                System.out.println("        Books in Stock         ");
+                                System.out.println("===============================");
                                 for (Book correntBook : bookServices.findAllBooks()) {
                                     System.out.println(correntBook);
                                 }
@@ -144,7 +149,9 @@ public class App {
 
                             case 2:
                                 clearTerminal();
-                                System.out.println("=== Register a new Book ===");
+                                System.out.println("===============================");
+                                System.out.println("      Register a new Book      ");
+                                System.out.println("===============================");
                                 System.out.print("Write the book title: ");
                                 String titleBook = sc.nextLine();
                                 System.out.print("Write the Date of Publication (dd/MM/yyyy): ");
@@ -189,7 +196,9 @@ public class App {
 
                                     case 2:
                                         clearTerminal();
-                                        System.out.println("\n== Register a new author ==");
+                                        System.out.println("===============================");
+                                        System.out.println("     Register a new Author     ");
+                                        System.out.println("===============================");
                                         System.out.print("Write the author's name: ");
                                         String authorName = sc.nextLine();
                                         System.out.print("Write the birth of date: ");
@@ -218,7 +227,7 @@ public class App {
 
                     case 2:
                         clearTerminal();
-                        System.out.println("\n===============================");
+                        System.out.println("===============================");
                         System.out.println("        Author Options         ");
                         System.out.println("===============================");
                         System.out.println("1. List authors in the system");
@@ -233,7 +242,9 @@ public class App {
                         switch (optionSelected) {
                             case 1:
                                 clearTerminal();
-                                System.out.println("\n=== Authors in the System ===");
+                                System.out.println("===============================");
+                                System.out.println("     Authors in the System     ");
+                                System.out.println("===============================");
                                 List<Author> authors = authorServices.findAllAuthors();
                                 for (Author correntAuthor : authors) {
                                     System.out.println(correntAuthor);
@@ -244,7 +255,9 @@ public class App {
 
                             case 2:
                                 clearTerminal();
-                                System.out.println("=== Register a new author ===");
+                                System.out.println("===============================");
+                                System.out.println("     Register a new Author     ");
+                                System.out.println("===============================");
                                 System.out.print("Write the author's name: ");
                                 String authorName = sc.nextLine();
                                 System.out.print("Write the birth of date: ");
@@ -280,7 +293,9 @@ public class App {
                         switch (optionSelected) {
                             case 1:
                                 clearTerminal();
-                                System.out.println("\n=== Members in the System ===");
+                                System.out.println("===============================");
+                                System.out.println("     Members in the System     ");
+                                System.out.println("===============================");
                                 List<Member> members = memberServices.findAllMembers();
                                 for (Member correntMember : members) {
                                     System.out.println(correntMember);
@@ -291,7 +306,9 @@ public class App {
 
                             case 2:
                                 clearTerminal();
-                                System.out.println("== Register a new Member ==\n");
+                                System.out.println("===============================");
+                                System.out.println("     Register a new Member     ");
+                                System.out.println("===============================");
                                 System.out.print("Write Member's name: ");
                                 String name = sc.nextLine();
                                 System.out.print("Write Member's address (city/state): ");
@@ -316,7 +333,7 @@ public class App {
 
                     case 4:
                         clearTerminal();
-                        System.out.println("\n===============================");
+                        System.out.println("===============================");
                         System.out.println("        Loan Options           ");
                         System.out.println("===============================");
                         System.out.println("1. Register a new loan");
@@ -332,7 +349,9 @@ public class App {
                         switch (optionSelected) {
                             case 1:
                                 clearTerminal();
-                                System.out.println("=== Register a new Loan ===");
+                                System.out.println("===============================");
+                                System.out.println("      Register a new Loan      ");
+                                System.out.println("===============================");
                                 System.out.println("Press 1 to list books by author");
                                 System.out.println("Press 2 to list all books in stock");
                                 System.out.print("Option Selected: ");
@@ -345,6 +364,7 @@ public class App {
 
                                 switch (optionSelected) {
                                     case 1:
+
                                         System.out.println("\n=== What Author do you want to list the his books? ===");
                                         for (Author correntAuthor : authorServices.findAllAuthors()) {
                                             System.out.println(correntAuthor);
@@ -384,11 +404,15 @@ public class App {
                                 book = bookServices.findBookByIsbn(isbnBook);
                                 Loan loan = new Loan(book, member, dateLoan, dateReturn, StatusLoan.ACTIVE, new BigDecimal(0));
                                 loanServices.registerLoan(loan);
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
 
                             case 2:
                                 clearTerminal();
-                                System.out.println("=== Return Loan ===");
+                                System.out.println("===============================");
+                                System.out.println("          Return Loan          ");
+                                System.out.println("===============================");
                                 System.out.println("Select A to loan active or L to Late");
                                 System.out.print("Option Selected: ");
                                 char optionSelectReturnLoan = sc.nextLine().toUpperCase().charAt(0);
@@ -433,12 +457,17 @@ public class App {
                                         System.out.println("The loan was returned successful");
                                         break;
                                 }
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
                         }
                         break;
 
                     case 5:
-                        System.out.println("\n=== Report Options ===");
+                        clearTerminal();
+                        System.out.println("===============================");
+                        System.out.println("        Report Options         ");
+                        System.out.println("===============================");
                         System.out.println("Press 1 to generate a report about loans");
                         System.out.println("Press 2 to generate a report about members");
                         System.out.print("Option selected: ");
@@ -450,14 +479,18 @@ public class App {
                         }
                         switch (optionSelected) {
                             case 1:
+                                clearTerminal();
                                 System.out.println();
                                 System.out.println(loanServices.generateReport());
                                 break;
                             case 2:
+                                clearTerminal();
                                 System.out.println();
                                 System.out.println(memberServices.generateReport());
                                 break;
                         }
+                        System.out.println("Press enter to continue...");
+                        sc.nextLine();
                         break;
                 }
 
