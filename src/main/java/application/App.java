@@ -215,6 +215,7 @@ public class App {
                         break;
 
                     case 2:
+                        clearTerminal();
                         System.out.println("\n===============================");
                         System.out.println("        Author Options         ");
                         System.out.println("===============================");
@@ -229,15 +230,19 @@ public class App {
 
                         switch (optionSelected) {
                             case 1:
+                                clearTerminal();
                                 System.out.println("\n=== Authors in the System ===");
                                 List<Author> authors = authorServices.findAllAuthors();
                                 for (Author correntAuthor : authors) {
                                     System.out.println(correntAuthor);
                                 }
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
 
                             case 2:
-                                System.out.println("== Register a new author ==\n");
+                                clearTerminal();
+                                System.out.println("=== Register a new author ===");
                                 System.out.print("Write the author's name: ");
                                 String authorName = sc.nextLine();
                                 System.out.print("Write the birth of date: ");
@@ -249,15 +254,21 @@ public class App {
 
                                 author = new Author(authorName, authorBirthOfDate, authorNationality, authorBiography);
                                 authorServices.registerNewAuthor(author);
+
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
                         }
                         break;
 
                     case 3:
-                        System.out.println("\n=== Member Options ===");
-                        System.out.println("Press 1 to list members in the system");
-                        System.out.println("Press 2 to register new member in the system");
-                        System.out.print("Option selected: ");
+                        clearTerminal();
+                        System.out.println("\n===============================");
+                        System.out.println("        Member Options         ");
+                        System.out.println("===============================");
+                        System.out.println("1. List members in the system");
+                        System.out.println("2. Register new member");
+                        System.out.print("Your option: ");
                         optionSelected = sc.nextInt();
                         sc.nextLine();
                         if (!(optionSelected == 1 || optionSelected == 2)) {
@@ -266,14 +277,18 @@ public class App {
 
                         switch (optionSelected) {
                             case 1:
+                                clearTerminal();
                                 System.out.println("\n=== Members in the System ===");
                                 List<Member> members = memberServices.findAllMembers();
                                 for (Member correntMember : members) {
                                     System.out.println(correntMember);
                                 }
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
 
                             case 2:
+                                clearTerminal();
                                 System.out.println("== Register a new Member ==\n");
                                 System.out.print("Write Member's name: ");
                                 String name = sc.nextLine();
@@ -291,15 +306,20 @@ public class App {
                                 memberServices.registerNewMember(member);
 
                                 System.out.println("Create a new member with this information -> " + member);
+                                System.out.println("Press enter to continue...");
+                                sc.nextLine();
                                 break;
                         }
                         break;
 
                     case 4:
-                        System.out.println("\n=== Loan Options ===");
-                        System.out.println("Press 1 to register a new loan");
-                        System.out.println("Press 2 to register a return");
-                        System.out.print("Option selected: ");
+                        clearTerminal();
+                        System.out.println("\n===============================");
+                        System.out.println("        Loan Options           ");
+                        System.out.println("===============================");
+                        System.out.println("1. Register a new loan");
+                        System.out.println("2. Register a return");
+                        System.out.print("Your option: ");
                         optionSelected = sc.nextInt();
                         sc.nextLine();
                         System.out.println();
@@ -309,7 +329,8 @@ public class App {
 
                         switch (optionSelected) {
                             case 1:
-                                System.out.println("== Register a new Loan ==");
+                                clearTerminal();
+                                System.out.println("=== Register a new Loan ===");
                                 System.out.println("Press 1 to list books by author");
                                 System.out.println("Press 2 to list all books in stock");
                                 System.out.print("Option Selected: ");
@@ -365,6 +386,7 @@ public class App {
                                 break;
 
                             case 2:
+                                clearTerminal();
                                 System.out.println("=== Return Loan ===");
                                 System.out.println("Select A to loan active or L to Late");
                                 System.out.print("Option Selected: ");
