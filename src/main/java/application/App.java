@@ -59,6 +59,7 @@ public class App {
                     System.out.print("Enter with a email: ");
                     String emailLogin = sc.nextLine();
                     member = memberServices.findMemberByEmail(emailLogin);
+                    clearTerminal();
                     System.out.println("\n=====================================");
                     System.out.println("         Login Complete");
                     System.out.println("         Hello! " + member.getName());

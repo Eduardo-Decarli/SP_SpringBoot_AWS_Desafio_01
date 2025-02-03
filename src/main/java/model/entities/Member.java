@@ -70,11 +70,13 @@ public class Member extends People{
 
     @Override
     public String toString() {
-        return "Name: " + getName() +
-                ", Address: " + address +
-                ", Phone Number: " + phoneNumber +
-                ", Email='" + email +
-                ", Date of Association: " + dateAssociation.format(fmt) +
-                ", Loan: " + (loan != null ? loan.toString() : "does not have a loan");
+        return "\n=====================\n" +
+                "Name: " + getName() +
+                "\nAddress: " + address +
+                "\nPhone Number: " + phoneNumber +
+                "\nEmail: " + email +
+                "\nDate of Association: " + dateAssociation.format(fmt) +
+                "\nLoan: " + (loan != null ? loan.toString() : "does not have a loan") +
+                "\n=====================\n";
     }
 }

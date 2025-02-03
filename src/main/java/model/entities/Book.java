@@ -75,11 +75,13 @@ public class Book {
 
     @Override
     public String toString() {
-        return  "Title: " + title +
-                ", Author: " + author.getName() +
-                ", Date of Publication: " + datePlublication.format(fmt) +
-                ", ISBN: " + isbn +
-                ", Genre: " + genre +
-                ", Quantity in Stock: " + quantity;
+        return "\n=====================\n" +
+                "Title: " + title +
+                "\nAuthor: " + author.getName() +
+                "\nDate of Publication: " + datePlublication.format(fmt) +
+                "\nISBN: " + isbn +
+                "\nGenre: " + genre +
+                "\nQuantity in Stock: " + quantity +
+                "\n=====================\n";
     }
 }

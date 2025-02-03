@@ -61,10 +61,12 @@ public class Author extends People {
 
     @Override
     public String toString() {
-        return "Id: " + getId() +
-                ", Author: " + getName() +
-                ", DateOfBirth: " + dateOfBirth.format(fmt) +
-                ", Nationality: " + nationality +
-                ", Biography: " + biography;
+        return "\n=====================\n" +
+                "Author ID: " + getId() +
+                "\nName: " + getName() +
+                "\nDate of Birth: " + dateOfBirth.format(fmt) +
+                "\nNationality: " + nationality +
+                "\nBiography: " + biography +
+                "\n=====================\n";
     }
 }

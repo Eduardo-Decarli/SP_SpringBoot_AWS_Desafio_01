@@ -71,7 +71,6 @@ public class BookDAO implements BookRepositoryDAO {
 
                 book = new Book( title, author, datePublication, isbnBook, gender, quantity);
                 book.setId(idBook);
-                System.out.println(book);
             }
         }
         catch(SQLException e){
